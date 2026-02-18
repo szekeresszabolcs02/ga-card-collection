@@ -28,8 +28,11 @@ const db = getFirestore(app);
 
 /*TELJES BETÖLTÉS FIRESTORE*/
 
-import { getDocs, collection } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { 
+    getDocs,
+    collection,
+    addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 async function loadAllCardsFromFirestore() {
 
@@ -181,20 +184,23 @@ function handleCSV(e) {
     // 1️⃣ Firestore feltöltés
     for (const row of rows) {
 
-        const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
+        const cleanId = `${csapat}_${ev}_${brand}_${sorozat}_${kartyaSzam}_${kartya}`
+    .replaceAll("/", "-")
+    .replaceAll("|", "-")
+    .replaceAll(" ", "_");
 
-        await setDoc(
-            doc(db, "cards", `${csapat}_${ev}_${brand}_${sorozat}_${kartyaSzam}`),
-            {
-                csapat,
-                ev,
-                brand,
-                sorozat,
-                kartyaSzam,
-                kartya,
-                owned: megvan === "TRUE"
-            }
-        );
+       await addDoc(
+    collection(db, "cards"),
+    {
+        csapat,
+        ev,
+        brand,
+        sorozat,
+        kartyaSzam,
+        kartya,          // itt maradhat a "/1"
+        owned: megvan === "TRUE"
+    }
+);
     }
 
     console.log("Firestore feltöltés kész");
