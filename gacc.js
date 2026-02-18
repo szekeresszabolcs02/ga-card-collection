@@ -202,7 +202,7 @@ function handleCSV(e) {
     // 2️⃣ Most betöltjük Firestore-ból az egészet
     await loadAllCardsFromFirestore();
 };
-   
+}
 
 
 function render(database) {
