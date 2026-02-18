@@ -1,26 +1,23 @@
-import { initializeApp } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { 
+  getAuth, 
+  signInAnonymously, 
+  onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  doc, 
+  setDoc, 
+  getDoc, 
+  onSnapshot 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-import { getFirestore } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-import { getRedirectResult, signInWithRedirect } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-loginBtn.addEventListener("click", async () => {
-  try {
-    await signInWithRedirect(auth, provider);
-  } catch (error) {
-    console.error("LOGIN HIBA:", error);
-  }
-});
-
+/*Firebase Config------------*/
 
 const firebaseConfig = {
-  apiKey: "IDE_A_TE_APIKULCSOD",
+  apiKey: "IDE_A_VALODI_API_KEY",
   authDomain: "grayson-card-collection.firebaseapp.com",
   projectId: "grayson-card-collection",
   storageBucket: "grayson-card-collection.appspot.com",
@@ -30,76 +27,30 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
+/*--------------------- idaig */
 
-getRedirectResult(auth)
-  .then((result) => {
-    if (result?.user) {
-      console.log("Sikeres login:", result.user.email);
-    }
+/*Anonymus login innen*/
+let USER_ID = null;
+
+signInAnonymously(auth)
+  .then(() => {
+    console.log("Anonim login OK");
   })
   .catch((error) => {
-    console.error("Redirect hiba:", error);
+    console.error("Anonim login hiba:", error);
   });
-
-// Login gomb
-const loginBtn = document.createElement("button");
-loginBtn.textContent = "Bejelentkezés Google-lel";
-
-
-loginBtn.addEventListener("click", () => {
-  signInWithPopup(auth, provider);
-});
-
-// Auth figyelés
-let USER_ID = null;
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    if (user.email !== "szekeres.szabolcs02@gmail.com") {
-      alert("Nincs jogosultságod!");
-      auth.signOut();
-    } else {
-      USER_ID = user.uid;
-      loginBtn.style.display = "none";
-      loadCardsFromFirestore();
-    }
-  } else {
-    loginBtn.style.display = "block";
+    USER_ID = user.uid;
+    console.log("User ID:", USER_ID);
   }
 });
+/*idaig-------------------------*/
 
-document.addEventListener("DOMContentLoaded", () => {
 
-  const checkboxes = document.querySelectorAll("input[type='checkbox']");
 
-  checkboxes.forEach(cb => {
-
-    const key = cb.dataset.key;
-    if(!key) return;
-
-    const docRef = doc(db,"cards",USER_ID+"_"+key);
-
-    onSnapshot(docRef,(docSnap)=>{
-      if(docSnap.exists()){
-        cb.checked = docSnap.data().owned;
-      }else{
-        cb.checked = false;
-      }
-      updateStyle(cb);
-    });
-
-    cb.addEventListener("change",async()=>{
-      await setDoc(docRef,{
-        owned: cb.checked
-      });
-      updateStyle(cb);
-    });
-
-  });
-
-});
 
 function updateStyle(cb){
   const card = cb.closest(".kartya");
@@ -145,10 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const csvInput = document.getElementById("csvInput");
   const exportBtn = document.getElementById("exportBtn");
   const searchInput = document.getElementById("searchInput");
-  loginBtn.className = "login-btn";
-    const adminPanel = document.querySelector(".admin-panel");
-        adminPanel.appendChild(loginBtn);
-
+  
 
   if (csvInput) {
     csvInput.addEventListener("change", handleCSV);
@@ -219,6 +167,7 @@ function handleCSV(e) {
 }
 
 
+/*Firestore mentes*/
 function initCheckboxesFromCSV(database) {
 
   document.querySelectorAll("input[type='checkbox']").forEach(cb => {
@@ -242,19 +191,26 @@ function initCheckboxesFromCSV(database) {
       card.classList.toggle("megvan", cb.checked);
     }
 
-    cb.addEventListener("change", () => {
-      const card = cb.closest(".kartya");
-      if (card){
-        card.classList.toggle("megvan", cb.checked);
-      }
-      updateAllCounts();
-      updateDashboard();
-    });
+    cb.addEventListener("change", async () => {
+
+  const key = cb.dataset.key;
+  const docRef = doc(db, "cards", key);
+
+  await setDoc(docRef, {
+    owned: cb.checked
+  });
+
+  const card = cb.closest(".kartya");
+  if (card) {
+    card.classList.toggle("megvan", cb.checked);
+  }
+
+  updateAllCounts();
+  updateDashboard();
+});
 
   });
 }
-
-
 
 function render(database) {
 
@@ -342,6 +298,15 @@ teamSummary.innerHTML = `
   });
 
 }
+/*REAL TIME betöltes*/
+function enableRealtimeSync() {
+  const cardsRef = doc(db, "meta", "sync");
+
+  onSnapshot(cardsRef, () => {
+    console.log("Realtime frissítés");
+  });
+}
+
 
 function initCheckboxes() {
 
@@ -475,32 +440,4 @@ function updateDashboard() {
   document.getElementById("percentCount").textContent = percent + "%";
 
   document.getElementById("globalProgress").style.width = percent + "%";
-}
-
-/* Betöltes Firestorebol */
-
-async function loadCardsFromFirestore() {
-
-  const snapshot = await getDocs(
-    collection(db, "users", USER_ID, "cards")
-  );
-
-  snapshot.forEach(docSnap => {
-
-    const key = docSnap.id;
-    const data = docSnap.data();
-
-    const checkbox = document.querySelector(
-      `input[data-key="${key}"]`
-    );
-
-    if (checkbox) {
-      checkbox.checked = data.owned;
-      checkbox.closest(".kartya")
-        .classList.toggle("megvan", data.owned);
-    }
-  });
-
-  updateAllCounts();
-  updateDashboard();
 }
