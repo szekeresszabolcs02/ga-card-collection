@@ -7,6 +7,17 @@ from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore } 
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+import { getRedirectResult, signInWithRedirect } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+loginBtn.addEventListener("click", async () => {
+  try {
+    await signInWithRedirect(auth, provider);
+  } catch (error) {
+    console.error("LOGIN HIBA:", error);
+  }
+});
+
 
 const firebaseConfig = {
   apiKey: "IDE_A_TE_APIKULCSOD",
@@ -21,7 +32,16 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
-const result = await signInWithPopup(auth, provider);
+
+getRedirectResult(auth)
+  .then((result) => {
+    if (result?.user) {
+      console.log("Sikeres login:", result.user.email);
+    }
+  })
+  .catch((error) => {
+    console.error("Redirect hiba:", error);
+  });
 
 // Login gomb
 const loginBtn = document.createElement("button");
