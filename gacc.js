@@ -163,51 +163,6 @@ function handleCSV(e) {
 }
 
 
-/*Firestore mentes*/
-function initCheckboxesFromCSV(database) {
-
-  document.querySelectorAll("input[type='checkbox']").forEach(cb => {
-
-    const key = cb.dataset.key;
-    const parts = key.split("|");
-
-    const [csapat, ev, brand, sorozat, kartyaSzam, kartya] = parts;
-
-    const owned =
-      database[csapat]
-      ?.brands[brand]
-      ?.[sorozat]
-      ?.find(c => c.number === kartyaSzam && c.name === kartya)
-      ?.owned;
-
-    cb.checked = owned === true;
-
-    const card = cb.closest(".kartya");
-    if (card) {
-      card.classList.toggle("megvan", cb.checked);
-    }
-
-    cb.addEventListener("change", async () => {
-
-  const key = cb.dataset.key;
-  const docRef = doc(db, "cards", key);
-
-  await setDoc(docRef, {
-    owned: cb.checked
-  });
-
-  const card = cb.closest(".kartya");
-  if (card) {
-    card.classList.toggle("megvan", cb.checked);
-  }
-
-  updateAllCounts();
-  updateDashboard();
-});
-
-  });
-}
-
 function render(database) {
 
   const main = document.querySelector("main");
@@ -294,12 +249,49 @@ teamSummary.innerHTML = `
   });
 
 }
-/*REAL TIME betöltes*/
-function enableRealtimeSync() {
-  const cardsRef = doc(db, "meta", "sync");
 
-  onSnapshot(cardsRef, () => {
-    console.log("Realtime frissítés");
+/*Firestore mentes*/
+function initCheckboxesFromCSV(database) {
+
+  document.querySelectorAll("input[type='checkbox']").forEach(cb => {
+
+    const key = cb.dataset.key;
+    const parts = key.split("|");
+
+    const [csapat, ev, brand, sorozat, kartyaSzam, kartya] = parts;
+
+    const owned =
+      database[csapat]
+      ?.brands[brand]
+      ?.[sorozat]
+      ?.find(c => c.number === kartyaSzam && c.name === kartya)
+      ?.owned;
+
+    cb.checked = owned === true;
+
+    const card = cb.closest(".kartya");
+    if (card) {
+      card.classList.toggle("megvan", cb.checked);
+    }
+
+    cb.addEventListener("change", async () => {
+
+  const key = cb.dataset.key;
+  const docRef = doc(db, "cards", key);
+
+  await setDoc(docRef, {
+    owned: cb.checked
+  });
+
+  const card = cb.closest(".kartya");
+  if (card) {
+    card.classList.toggle("megvan", cb.checked);
+  }
+
+  updateAllCounts();
+  updateDashboard();
+});
+
   });
 }
 
@@ -325,12 +317,11 @@ function initCheckboxes() {
 
   updateAllCounts();
   updateDashboard();
-
  
 });
 
-  
 }
+
 
 function updateAllCounts() {
 
@@ -351,6 +342,56 @@ function updateAllCounts() {
   });
 
 }
+
+/* Szamlalo Script */
+
+function updateDashboard() {
+  const checkboxes = document.querySelectorAll(".kartya input[type='checkbox']");
+  
+  const total = checkboxes.length;
+  let owned = 0;
+
+  checkboxes.forEach(cb => {
+    if (cb.checked) owned++;
+  });
+
+  const missing = total - owned;
+  const percent = total === 0 ? 0 : Math.round((owned / total) * 100);
+
+  document.getElementById("totalCount").textContent = total;
+  document.getElementById("ownedCount").textContent = owned;
+  document.getElementById("missingCount").textContent = missing;
+  document.getElementById("percentCount").textContent = percent + "%";
+
+  document.getElementById("globalProgress").style.width = percent + "%";
+}
+
+/*REAL TIME betöltes*/
+function enableRealtimeSync() {
+  
+  document.querySelectorAll("input[type='checkbox']").forEach(cb => {
+
+    const key = cb.dataset.key;
+    const docRef = doc(db, "cards", key);
+
+    onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        cb.checked = docSnap.data().owned;
+
+        const card = cb.closest(".kartya");
+        if (card) {
+          card.classList.toggle("megvan", cb.checked);
+        }
+
+        updateAllCounts();
+        updateDashboard();
+      }
+    });
+
+  });
+
+}
+
 
 function exportCSV() {
 
@@ -415,25 +456,3 @@ function handleSearch(e) {
 
 }
 
-/* Szamlalo Script */
-
-function updateDashboard() {
-  const checkboxes = document.querySelectorAll(".kartya input[type='checkbox']");
-  
-  const total = checkboxes.length;
-  let owned = 0;
-
-  checkboxes.forEach(cb => {
-    if (cb.checked) owned++;
-  });
-
-  const missing = total - owned;
-  const percent = total === 0 ? 0 : Math.round((owned / total) * 100);
-
-  document.getElementById("totalCount").textContent = total;
-  document.getElementById("ownedCount").textContent = owned;
-  document.getElementById("missingCount").textContent = missing;
-  document.getElementById("percentCount").textContent = percent + "%";
-
-  document.getElementById("globalProgress").style.width = percent + "%";
-}
