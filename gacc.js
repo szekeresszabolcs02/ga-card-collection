@@ -199,10 +199,10 @@ function handleCSV(e) {
     }
   );
 
-});
+  });
 
 
-      /*const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
+      const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
 
       if (!database[csapat]) {
         database[csapat] = {
@@ -224,7 +224,7 @@ function handleCSV(e) {
         number: kartyaSzam,
         name: kartya,
         owned: megvan === "TRUE"
-      });*/
+      });
 
     });
 
