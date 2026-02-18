@@ -14,14 +14,6 @@ import {
   onSnapshot 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-
-/*Firebase Config------------*/
-
-// Import the functions you need from the SDKs you need
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBd--_OmOvCXTfuAQ-D96IS6NgRssCMavg",
   authDomain: "grayson-card-collection.firebaseapp.com",
@@ -30,6 +22,9 @@ const firebaseConfig = {
   messagingSenderId: "868175520778",
   appId: "1:868175520778:web:0cabbf5d88912c35aaabf3"
 };
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);   // ← EZ HIÁNYZIK NÁLAD
+const db = getFirestore(app);
 
 /*Anonymus login innen*/
 let USER_ID = null;
