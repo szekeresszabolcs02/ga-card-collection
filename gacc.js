@@ -172,42 +172,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function handleCSV(e) {
 
-  const file = e.target.files[0];
-  const reader = new FileReader();
+    const file = e.target.files[0];
+    const reader = new FileReader();
 
- reader.onload = async function(event) {
+    reader.onload = async function(event) {
 
-    const text = event.target.result.trim();
-    const rows = text.split("\n");
-    rows.shift(); // fejléc törlés
+        const text = event.target.result.trim();
+        const rows = text.split("\n");
+        rows.shift(); // fejléc törlés
 
-    // 1️⃣ Firestore feltöltés
-    for (const row of rows) {
+        for (const row of rows) {
 
-        const cleanId = `${csapat}_${ev}_${brand}_${sorozat}_${kartyaSzam}_${kartya}`
-    .replaceAll("/", "-")
-    .replaceAll("|", "-")
-    .replaceAll(" ", "_");
+            if (!row.trim()) continue;
 
-       await addDoc(
-    collection(db, "cards"),
-    {
-        csapat,
-        ev,
-        brand,
-        sorozat,
-        kartyaSzam,
-        kartya,          // itt maradhat a "/1"
-        owned: megvan === "TRUE"
-    }
-);
-    }
+            const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
 
-    console.log("Firestore feltöltés kész");
+            await addDoc(
+                collection(db, "cards"),
+                {
+                    csapat,
+                    ev,
+                    brand,
+                    sorozat,
+                    kartyaSzam,
+                    kartya,
+                    owned: megvan === "TRUE"
+                }
+            );
+        }
 
-    // 2️⃣ Most betöltjük Firestore-ból az egészet
-    await loadAllCardsFromFirestore();
-};
+        console.log("Import kész");
+
+        await loadAllCardsFromFirestore();
+    };
+
+    reader.readAsText(file);
 }
 
 
