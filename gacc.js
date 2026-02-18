@@ -7,6 +7,7 @@ from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore } 
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+
 const firebaseConfig = {
   apiKey: "IDE_A_TE_APIKULCSOD",
   authDomain: "grayson-card-collection.firebaseapp.com",
@@ -20,6 +21,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
+const result = await signInWithPopup(auth, provider);
 
 // Login gomb
 const loginBtn = document.createElement("button");
