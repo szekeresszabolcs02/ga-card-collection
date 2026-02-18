@@ -172,70 +172,37 @@ function handleCSV(e) {
   const file = e.target.files[0];
   const reader = new FileReader();
 
-  reader.onload = function(event) {
+ reader.onload = async function(event) {
 
     const text = event.target.result.trim();
     const rows = text.split("\n");
-    rows.shift();
+    rows.shift(); // fejléc törlés
 
-    const database = {};
+    // 1️⃣ Firestore feltöltés
+    for (const row of rows) {
 
-    rows.forEach(row => {
+        const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
 
-      rows.forEach(async row => {
-
-  const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
-
-  await setDoc(
-    doc(db, "cards", `${csapat}_${ev}_${brand}_${sorozat}_${kartyaSzam}`),
-    {
-      csapat,
-      ev,
-      brand,
-      sorozat,
-      kartyaSzam,
-      kartya,
-      owned: megvan === "TRUE"
+        await setDoc(
+            doc(db, "cards", `${csapat}_${ev}_${brand}_${sorozat}_${kartyaSzam}`),
+            {
+                csapat,
+                ev,
+                brand,
+                sorozat,
+                kartyaSzam,
+                kartya,
+                owned: megvan === "TRUE"
+            }
+        );
     }
-  );
 
-  });
+    console.log("Firestore feltöltés kész");
 
-
-      const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
-
-      if (!database[csapat]) {
-        database[csapat] = {
-          name: csapat,
-          season: ev,
-          brands: {}
-        };
-      }
-
-      if (!database[csapat].brands[brand]) {
-        database[csapat].brands[brand] = {};
-      }
-
-      if (!database[csapat].brands[brand][sorozat]) {
-        database[csapat].brands[brand][sorozat] = [];
-      }
-
-      database[csapat].brands[brand][sorozat].push({
-        number: kartyaSzam,
-        name: kartya,
-        owned: megvan === "TRUE"
-      });
-
-    });
-
-    render(database);
-    initCheckboxesFromCSV(database);
-    updateAllCounts();
-    updateDashboard();
-  };
-
-  reader.readAsText(file);
-}
+    // 2️⃣ Most betöltjük Firestore-ból az egészet
+    await loadAllCardsFromFirestore();
+};
+   
 
 
 function render(database) {
