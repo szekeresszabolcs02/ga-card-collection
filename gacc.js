@@ -26,6 +26,53 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);   // ← EZ HIÁNYZIK NÁLAD
 const db = getFirestore(app);
 
+/*TELJES BETÖLTÉS FIRESTORE*/
+
+import { getDocs, collection } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+async function loadAllCardsFromFirestore() {
+
+  const snapshot = await getDocs(collection(db, "cards"));
+  const database = {};
+
+  snapshot.forEach(docSnap => {
+
+    const data = docSnap.data();
+
+    if (!database[data.csapat]) {
+      database[data.csapat] = {
+        name: data.csapat,
+        season: data.ev,
+        brands: {}
+      };
+    }
+
+    if (!database[data.csapat].brands[data.brand]) {
+      database[data.csapat].brands[data.brand] = {};
+    }
+
+    if (!database[data.csapat].brands[data.brand][data.sorozat]) {
+      database[data.csapat].brands[data.brand][data.sorozat] = [];
+    }
+
+    database[data.csapat]
+      .brands[data.brand][data.sorozat]
+      .push({
+        number: data.kartyaSzam,
+        name: data.kartya,
+        owned: data.owned
+      });
+
+  });
+
+  render(database);
+  updateAllCounts();
+  updateDashboard();
+  enableRealtimeSync();
+}
+
+
 /*Anonymus login innen*/
 let USER_ID = null;
 
@@ -44,6 +91,14 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 /*idaig-------------------------*/
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    USER_ID = user.uid;
+    console.log("User ID:", USER_ID);
+    loadAllCardsFromFirestore();
+  }
+});
 
 
 
@@ -127,7 +182,27 @@ function handleCSV(e) {
 
     rows.forEach(row => {
 
-      const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
+      rows.forEach(async row => {
+
+  const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
+
+  await setDoc(
+    doc(db, "cards", `${csapat}_${ev}_${brand}_${sorozat}_${kartyaSzam}`),
+    {
+      csapat,
+      ev,
+      brand,
+      sorozat,
+      kartyaSzam,
+      kartya,
+      owned: megvan === "TRUE"
+    }
+  );
+
+});
+
+
+      /*const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
 
       if (!database[csapat]) {
         database[csapat] = {
@@ -149,7 +224,7 @@ function handleCSV(e) {
         number: kartyaSzam,
         name: kartya,
         owned: megvan === "TRUE"
-      });
+      });*/
 
     });
 
