@@ -209,6 +209,12 @@ function handleCSV(e) {
     reader.readAsText(file);
 }
 
+function extractPrintRun(name) {
+    const match = name.match(/\/(\d+)/);
+    return match ? match[1] : null;
+}
+
+
 
 function render(database) {
 
@@ -273,10 +279,17 @@ teamSummary.innerHTML = `
           const cardDiv = document.createElement("div");
           cardDiv.className = "kartya";
 
-          cardDiv.innerHTML = `
-            <span>${card.number}.  ${card.name}</span>
-            <input type="checkbox" data-key="${key}">
-          `;
+          
+            const printRun = extractPrintRun(card.name);
+const cleanName = card.name.replace(/\/\d+/, "").trim();
+
+cardDiv.innerHTML = `
+    <div class="card-name">
+        ${card.number}. ${cleanName}
+        ${printRun ? `<span class="print-run">#1 of ${printRun}</span>` : ""}
+    </div>
+    <input type="checkbox" data-key="${key}">
+            `;
 
           grid.appendChild(cardDiv);
 
