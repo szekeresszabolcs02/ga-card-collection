@@ -218,6 +218,7 @@ function extractPrintRun(name) {
 
 function render(database) {
 
+
   const main = document.querySelector("main");
   main.innerHTML = "";
 
@@ -280,12 +281,12 @@ teamSummary.innerHTML = `
           cardDiv.className = "kartya";
 
           
-            const printRun = extractPrintRun(card.name);
-const cleanName = card.name.replace(/\/\d+/, "").trim();
+   const printRun = extractPrintRun(card.kartya);
+const cleanName = card.kartya.replace(/\/\d+/, "").trim();
 
 cardDiv.innerHTML = `
     <div class="card-name">
-        ${card.number}. ${cleanName}
+        ${card.kartyaSzam}. ${cleanName}
         ${printRun ? `<span class="print-run">#1 of ${printRun}</span>` : ""}
     </div>
     <input type="checkbox" data-key="${key}">
