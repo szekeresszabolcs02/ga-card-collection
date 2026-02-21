@@ -7,13 +7,6 @@ import {
   onAuthStateChanged 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-import { 
-  getFirestore, 
-  doc, 
-  setDoc, 
-  onSnapshot 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyBd--_OmOvCXTfuAQ-D96IS6NgRssCMavg",
   authDomain: "grayson-card-collection.firebaseapp.com",
@@ -28,52 +21,63 @@ const db = getFirestore(app);
 
 /*TELJES BETÖLTÉS FIRESTORE*/
 
-import { 
-    getDocs,
+import {
+    getFirestore,
+    doc,
+    updateDoc,
     collection,
+    onSnapshot,
     addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+
 async function loadAllCardsFromFirestore() {
 
-  const snapshot = await getDocs(collection(db, "cards"));
-  const database = {};
+    const snapshot = await getDocs(collection(db, "cards"));
 
-  snapshot.forEach(docSnap => {
+    const database = {};
 
-    const data = docSnap.data();
+    snapshot.forEach(docSnap => {
 
-    if (!database[data.csapat]) {
-      database[data.csapat] = {
-        name: data.csapat,
-        season: data.ev,
-        brands: {}
-      };
-    }
+        const data = docSnap.data();
 
-    if (!database[data.csapat].brands[data.brand]) {
-      database[data.csapat].brands[data.brand] = {};
-    }
+        const { csapat, ev, brand, sorozat, kartyaSzam, kartya, owned } = data;
 
-    if (!database[data.csapat].brands[data.brand][data.sorozat]) {
-      database[data.csapat].brands[data.brand][data.sorozat] = [];
-    }
+        if (!database[csapat]) {
+            database[csapat] = {
+                name: csapat,
+                season: ev,
+                brands: {}
+            };
+        }
 
-    database[data.csapat]
-      .brands[data.brand][data.sorozat]
-      .push({
-        number: data.kartyaSzam,
-        name: data.kartya,
-        owned: data.owned
-      });
+        if (!database[csapat].brands[brand]) {
+            database[csapat].brands[brand] = {};
+        }
 
-  });
+        if (!database[csapat].brands[brand][sorozat]) {
+            database[csapat].brands[brand][sorozat] = [];
+        }
 
-  render(database);
-  updateAllCounts();
-  updateDashboard();
-  enableRealtimeSync();
+        database[csapat].brands[brand][sorozat].push({
+            kartyaSzam,
+            kartya,
+            owned,
+            id: docSnap.id
+        });
+
+    });
+
+    console.log("Betöltött dokumentumok:", snapshot.size);
+
+    render(database);
+    updateAllCounts();
+    updateDashboard();
+   
 }
+
+  
+
 
 
 /*Anonymus login innen*/
@@ -87,24 +91,17 @@ signInAnonymously(auth)
     console.error("Anonim login hiba:", error);
   });
 
+let realtimeStarted = false;
+
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    USER_ID = user.uid;
-    console.log("User ID:", USER_ID);
-  }
+
+    if (user && !realtimeStarted) {
+        realtimeStarted = true;
+        enableRealtimeSync();
+    }
+
 });
 /*idaig-------------------------*/
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    USER_ID = user.uid;
-    console.log("User ID:", USER_ID);
-    loadAllCardsFromFirestore();
-  }
-});
-
-
-
 
 function updateStyle(cb){
   const card = cb.closest(".kartya");
@@ -123,7 +120,7 @@ const teamConfig = {
   "Utah Jazz": {
     color1: "#002B5C",
     color2: "#F9A01B",
-    logo: "logos/utahjazz.png"
+    logo:"/HTML PROJEKT/ga/utahjazz.png"
   },
   "Memphis Grizzlies": {
     color1: "#5D76A9",
@@ -154,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (csvInput) {
     csvInput.addEventListener("change", handleCSV);
+
   }
 
   if (exportBtn) {
@@ -172,7 +170,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function handleCSV(e) {
 
+    console.log("CSV handle elindult");
+
     const file = e.target.files[0];
+   
     const reader = new FileReader();
 
     reader.onload = async function(event) {
@@ -203,13 +204,13 @@ function handleCSV(e) {
 
         console.log("Import kész");
 
-        await loadAllCardsFromFirestore();
     };
 
     reader.readAsText(file);
 }
 
 function extractPrintRun(name) {
+    if (!name || typeof name !== "string") return null;
     const match = name.match(/\/(\d+)/);
     return match ? match[1] : null;
 }
@@ -218,7 +219,6 @@ function extractPrintRun(name) {
 
 function render(database) {
 
-
   const main = document.querySelector("main");
   main.innerHTML = "";
 
@@ -226,6 +226,8 @@ function render(database) {
 
     const teamDetails = document.createElement("details");
     teamDetails.className = "team-mappa";
+
+    teamDetails.dataset.key = `team-${teamData.name}`;
 
     const config = teamConfig[teamData.name];
 
@@ -249,6 +251,8 @@ teamSummary.innerHTML = `
       const brandDetails = document.createElement("details");
       brandDetails.className = "brand-mappa";
 
+      brandDetails.dataset.key = `brand-${teamData.name}-${brandName}`;
+
       const brandSummary = document.createElement("summary");
       brandSummary.innerHTML = `
         <span>${brandName}</span>
@@ -261,6 +265,8 @@ teamSummary.innerHTML = `
 
         const seriesDetails = document.createElement("details");
         seriesDetails.className = "sorozat-mappa";
+
+        seriesDetails.dataset.key = `series-${teamData.name}-${brandName}-${seriesName}`;
 
         const seriesSummary = document.createElement("summary");
         seriesSummary.innerHTML = `
@@ -275,22 +281,26 @@ teamSummary.innerHTML = `
 
         cards.forEach(card => {
 
-          const key = `${teamData.name}|${teamData.season}|${brandName}|${seriesName}|${card.number}|${card.name}`;
+            if (!card.kartya) return;
 
+          const key = `${teamData.name}|${teamData.season}|${brandName}|${seriesName}|${card.kartyaSzam}|${card.kartya}`;
           const cardDiv = document.createElement("div");
           cardDiv.className = "kartya";
-
           
    const printRun = extractPrintRun(card.kartya);
 const cleanName = card.kartya.replace(/\/\d+/, "").trim();
 
 cardDiv.innerHTML = `
-    <div class="card-name">
-        ${card.kartyaSzam}. ${cleanName}
-        ${printRun ? `<span class="print-run">#1 of ${printRun}</span>` : ""}
-    </div>
-    <input type="checkbox" data-key="${key}">
-            `;
+<div class="card-name">
+    ${card.kartyaSzam}. ${cleanName}
+    ${printRun ? `
+        <span class="rarity-badge">
+           <span class="rarity-total">/ ${printRun}</span>
+        </span>
+    ` : ""}
+</div>
+<input type="checkbox" data-key="${card.id}" ${card.owned ? "checked" : ""}>
+`;
 
           grid.appendChild(cardDiv);
 
@@ -314,74 +324,13 @@ cardDiv.innerHTML = `
 /*Firestore mentes*/
 function initCheckboxesFromCSV(database) {
 
-  document.querySelectorAll("input[type='checkbox']").forEach(cb => {
-
-    const key = cb.dataset.key;
-    const parts = key.split("|");
-
-    const [csapat, ev, brand, sorozat, kartyaSzam, kartya] = parts;
-
-    const owned =
-      database[csapat]
-      ?.brands[brand]
-      ?.[sorozat]
-      ?.find(c => c.number === kartyaSzam && c.name === kartya)
-      ?.owned;
-
-    cb.checked = owned === true;
-
-    const card = cb.closest(".kartya");
-    if (card) {
-      card.classList.toggle("megvan", cb.checked);
-    }
-
-    cb.addEventListener("change", async () => {
-
-  const key = cb.dataset.key;
-  const docRef = doc(db, "cards", key);
-
-  await setDoc(docRef, {
-    owned: cb.checked
-  });
-
-  const card = cb.closest(".kartya");
-  if (card) {
-    card.classList.toggle("megvan", cb.checked);
-  }
-
-  updateAllCounts();
-  updateDashboard();
-});
-
-  });
-}
-
-
-function initCheckboxes() {
-
-  cb.addEventListener("change", async () => {
-
-  if(!USER_ID) return;
-
-  const key = cb.dataset.key;
-
-  await setDoc(
-    doc(db, "users", USER_ID, "cards", key),
-    {
-      owned: cb.checked,
-      updated: new Date()
-    }
-  );
-
-  cb.closest(".kartya")
-    .classList.toggle("megvan", cb.checked);
-
-  updateAllCounts();
-  updateDashboard();
  
-});
-
-}
+    cb.addEventListener("change", async () => {
+    await updateDoc(doc(db, "cards", card.id), {
+        owned: cb.checked
+    });
+  });
+  }
 
 
 function updateAllCounts() {
@@ -427,30 +376,88 @@ function updateDashboard() {
   document.getElementById("globalProgress").style.width = percent + "%";
 }
 
-/*REAL TIME betöltes*/
-function enableRealtimeSync() {
-  
-  document.querySelectorAll("input[type='checkbox']").forEach(cb => {
 
-    const key = cb.dataset.key;
-    const docRef = doc(db, "cards", key);
+function attachCheckboxListeners() {
 
-    onSnapshot(docRef, (docSnap) => {
-      if (docSnap.exists()) {
-        cb.checked = docSnap.data().owned;
+    document.querySelectorAll("input[type='checkbox']").forEach(cb => {
 
-        const card = cb.closest(".kartya");
-        if (card) {
-          card.classList.toggle("megvan", cb.checked);
-        }
+        cb.addEventListener("change", async () => {
 
-        updateAllCounts();
-        updateDashboard();
-      }
+            console.log("Checkbox változott:", cb.dataset.key);
+
+            await updateDoc(doc(db, "cards", cb.dataset.key), {
+                owned: cb.checked
+            });
+
+        });
+
     });
 
-  });
+}
 
+
+/*REAL TIME betöltes*/
+
+let unsubscribe = null;
+
+function enableRealtimeSync() {
+  
+  console.log("RealtimeSync ELINDULT");
+
+    onSnapshot(collection(db, "cards"), (snapshot) => {
+
+        console.log("Snapshot lefutott");
+
+        // 1️⃣ Mappa állapot mentése
+        const openDetails = new Set(
+            [...document.querySelectorAll("details[open]")]
+                .map(d => d.dataset.key)
+        );
+
+        const database = {};
+
+        snapshot.forEach(docSnap => {
+            const data = docSnap.data();
+            const { csapat, ev, brand, sorozat, kartyaSzam, kartya, owned } = data;
+
+            if (!database[csapat]) {
+                database[csapat] = {
+                    name: csapat,
+                    season: ev,
+                    brands: {}
+                };
+            }
+
+            if (!database[csapat].brands[brand]) {
+                database[csapat].brands[brand] = {};
+            }
+
+            if (!database[csapat].brands[brand][sorozat]) {
+                database[csapat].brands[brand][sorozat] = [];
+            }
+
+            database[csapat].brands[brand][sorozat].push({
+                kartyaSzam,
+                kartya,
+                owned,
+                id: docSnap.id
+            });
+        });
+
+        render(database);
+
+        // 2️⃣ Mappa állapot visszaállítása
+        document.querySelectorAll("details").forEach(d => {
+            if (openDetails.has(d.dataset.key)) {
+                d.open = true;
+            }
+        });
+
+        attachCheckboxListeners();
+        updateAllCounts();
+        updateDashboard();
+
+    });
 }
 
 
