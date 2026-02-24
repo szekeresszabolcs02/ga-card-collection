@@ -191,14 +191,21 @@ function handleCSV(e) {
     reader.onload = async function(event) {
 
         const text = event.target.result.trim();
-        const rows = text.split("\n");
+        const rows = text.split(/\r?\n/);
         rows.shift(); // fejléc törlés
 
         for (const row of rows) {
 
             if (!row.trim()) continue;
 
-            const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
+          const parts = row.split(";");
+
+    if (parts.length !== 7) {
+        console.log("HIBÁS SOR:", row);
+        continue;
+    }
+
+            const [csapat, ev, brand, sorozat, kartyaSzam, kartyaRaw, megvan] = row.split(";");
             const nameParts = kartyaRaw.split(" /");
             const baseName = nameParts[0];
             const printRun = nameParts[1] ? parseInt(nameParts[1]) : null;
@@ -208,7 +215,7 @@ function handleCSV(e) {
                   brand,
                   sorozat,
                   kartyaSzam,
-              kartya: baseName,      // már tiszta név
+                  kartya: baseName,      // már tiszta név
                   printRun: printRun,    // külön mező
                       owned: megvan === "TRUE"
 });
