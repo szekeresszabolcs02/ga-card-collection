@@ -68,6 +68,18 @@ async function loadAllCardsFromFirestore() {
 
     });
 
+    Object.values(database).forEach(team =>
+    Object.values(team.brands).forEach(brand =>
+        Object.values(brand).forEach(series =>
+            series.sort((a, b) =>
+                a.kartyaSzam.localeCompare(b.kartyaSzam, undefined, {
+                    numeric: true,
+                    sensitivity: "base"
+                })
+            )
+        )
+    )
+      );
     console.log("Betöltött dokumentumok:", snapshot.size);
 
     render(database);
@@ -120,12 +132,12 @@ const teamConfig = {
   "Utah Jazz": {
     color1: "#002B5C",
     color2: "#F9A01B",
-    logo:"/HTML PROJEKT/ga/utahjazz.png"
+    logo: "utahjazz.png"
   },
   "Memphis Grizzlies": {
     color1: "#5D76A9",
     color2: "#12173F",
-    logo: "logos/memphis.png"
+    logo: "Grizzlies.png"
   },
   "Milwaukee Bucks": {
     color1: "#00471B",
@@ -215,6 +227,38 @@ function extractPrintRun(name) {
     return match ? match[1] : null;
 }
 
+series.sort((a, b) => {
+
+    const aName = a.kartya;
+    const bName = b.kartya;
+
+    // 1️⃣ rarity priority
+    const aBaseName = aName.split(" /")[0];
+    const bBaseName = bName.split(" /")[0];
+
+    const aPriority = rarityOrder[aName] ?? 999;
+    const bPriority = rarityOrder[bName] ?? 999;
+
+    if (aPriority !== bPriority) {
+        return aPriority - bPriority;
+    }
+
+    // 2️⃣ print run sort (kisebb előre)
+    const aPrint = extractPrintRun(aName);
+    const bPrint = extractPrintRun(bName);
+
+    if (aPrint && bPrint && aPrint !== bPrint) {
+        return aPrint - bPrint;
+    }
+
+    // 3️⃣ natural sort fallback
+    return a.kartyaSzam.localeCompare(
+        b.kartyaSzam,
+        undefined,
+        { numeric: true, sensitivity: "base" }
+    );
+
+});
 
 
 function render(database) {
@@ -442,6 +486,13 @@ function enableRealtimeSync() {
                 owned,
                 id: docSnap.id
             });
+
+            database[csapat].brands[brand][sorozat].sort((a, b) =>
+            a.kartyaSzam.localeCompare(b.kartyaSzam, undefined, {
+                numeric: true,
+                sensitivity: "base"
+                    })
+                        );
         });
 
         render(database);
