@@ -199,19 +199,19 @@ function handleCSV(e) {
             if (!row.trim()) continue;
 
             const [csapat, ev, brand, sorozat, kartyaSzam, kartya, megvan] = row.split(";");
-
-            await addDoc(
-                collection(db, "cards"),
-                {
-                    csapat,
-                    ev,
-                    brand,
-                    sorozat,
-                    kartyaSzam,
-                    kartya,
-                    owned: megvan === "TRUE"
-                }
-            );
+            const nameParts = kartyaRaw.split(" /");
+            const baseName = nameParts[0];
+            const printRun = nameParts[1] ? parseInt(nameParts[1]) : null;
+            await addDoc(collection(db, "cards"), {
+                  csapat,
+                  ev,
+                  brand,
+                  sorozat,
+                  kartyaSzam,
+              kartya: baseName,      // már tiszta név
+                  printRun: printRun,    // külön mező
+                      owned: megvan === "TRUE"
+});
         }
 
         console.log("Import kész");
@@ -227,38 +227,6 @@ function extractPrintRun(name) {
     return match ? match[1] : null;
 }
 
-series.sort((a, b) => {
-
-    const aName = a.kartya;
-    const bName = b.kartya;
-
-    // 1️⃣ rarity priority
-    const aBaseName = aName.split(" /")[0];
-    const bBaseName = bName.split(" /")[0];
-
-    const aPriority = rarityOrder[aName] ?? 999;
-    const bPriority = rarityOrder[bName] ?? 999;
-
-    if (aPriority !== bPriority) {
-        return aPriority - bPriority;
-    }
-
-    // 2️⃣ print run sort (kisebb előre)
-    const aPrint = extractPrintRun(aName);
-    const bPrint = extractPrintRun(bName);
-
-    if (aPrint && bPrint && aPrint !== bPrint) {
-        return aPrint - bPrint;
-    }
-
-    // 3️⃣ natural sort fallback
-    return a.kartyaSzam.localeCompare(
-        b.kartyaSzam,
-        undefined,
-        { numeric: true, sensitivity: "base" }
-    );
-
-});
 
 
 function render(database) {
@@ -487,15 +455,46 @@ function enableRealtimeSync() {
                 id: docSnap.id
             });
 
-            database[csapat].brands[brand][sorozat].sort((a, b) =>
-            a.kartyaSzam.localeCompare(b.kartyaSzam, undefined, {
-                numeric: true,
-                sensitivity: "base"
-                    })
-                        );
-        });
+           database[csapat].brands[brand][sorozat].sort((a, b) => {
 
-        render(database);
+    function getPriority(name) {
+        if (name.includes("Base")) return 1;
+        if (name.includes("Silver")) return 2;
+        if (name.includes("Green")) return 3;
+        if (name.includes("Hyper")) return 4;
+        if (name.includes("Choice")) return 5;
+        if (name.includes("Fast Break")) return 6;
+        if (name.includes("Purple")) return 7;
+        if (name.includes("Orange")) return 8;
+        if (name.includes("Gold")) return 9;
+        if (name.includes("Black")) return 10;
+        return 999;
+    }
+
+    const aPriority = getPriority(a.kartya);
+    const bPriority = getPriority(b.kartya);
+
+    if (aPriority !== bPriority) {
+        return aPriority - bPriority;
+    }
+
+    // print run rendezés (/5 előbb mint /199)
+    const aPrint = extractPrintRun(a.kartya);
+    const bPrint = extractPrintRun(b.kartya);
+
+    if (aPrint && bPrint && aPrint !== bPrint) {
+        return bPrint - aPrint;
+    }
+
+    // végső fallback
+    return a.kartyaSzam.localeCompare(
+        b.kartyaSzam,
+        undefined,
+        { numeric: true, sensitivity: "base" }
+    );
+
+});      
+        
 
         // 2️⃣ Mappa állapot visszaállítása
         document.querySelectorAll("details").forEach(d => {
@@ -507,10 +506,10 @@ function enableRealtimeSync() {
         attachCheckboxListeners();
         updateAllCounts();
         updateDashboard();
-
+        render(database);
     });
+});
 }
-
 
 function exportCSV() {
 
