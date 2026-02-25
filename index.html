@@ -1,82 +1,44 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🏀 Grayson Allen – Card Collection</title>
-<link rel="stylesheet" href="graysonallen.css" />
-
-<style>
-
-/* ===== MOBILE ===== */
-@media(max-width:768px){
-  header h1{font-size:22px;}
-  .team{margin:20px;}
-  .card-grid{grid-template-columns:1fr;}
-}
-
-
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏀 Grayson Allen Collection</title>
+    <link rel="stylesheet" href="graysonallen.css">
 </head>
 <body>
 
 <header>
-  <h1>Grayson Allen – Card Collection</h1>
-  <p>Private NBA Trading Card Archive</p>
+  <h1>GRAYSON ALLEN</h1>
+  <p>TRADING CARD ARCHIVE</p>
+  <div class="search-wrapper">
+    <input type="text" id="searchInput" placeholder="Keresés év, márka vagy kártya szerint...">
+  </div>
 </header>
 
-<!-- Szamlalo -->
-<div class="dashboard">
-  <div class="stat">
-    <span class="stat-label">Összes lap</span>
-    <span id="totalCount">0</span>
-  </div>
+<main>
+    <div class="stats-container">
+        <div class="stats-grid">
+            <div class="stat"><span>Összesen</span><span id="totalCount">0</span></div>
+            <div class="stat"><span>Megvan</span><span id="ownedCount">0</span></div>
+            <div class="stat"><span>Hiányzik</span><span id="missingCount">0</span></div>
+            <div class="stat"><span>Haladás</span><span id="percentCount">0%</span></div>
+        </div>
+        <div class="progress">
+            <div id="globalProgress" class="progress-fill"></div>
+        </div>
+    </div>
 
-  <div class="stat">
-    <span class="stat-label">Megvan</span>
-    <span id="ownedCount">0</span>
-  </div>
-
-  <div class="stat">
-    <span class="stat-label">Hiányzik</span>
-    <span id="missingCount">0</span>
-  </div>
-
-  <div class="stat">
-    <span class="stat-label">Készültség</span>
-    <span id="percentCount">0%</span>
-  </div>
-
-  <div class="progress">
-    <div id="globalProgress" class="progress-fill"></div>
-  </div>
-</div>
-
-
-
-
-<!-- FIREBASE SCRIPT -->
-<script type="module" src="gacc.js"></script>
+    <div id="breadcrumb" class="breadcrumb"></div>
+    
+    <div id="folderContainer" class="folder-grid"></div>
+</main>
 
 <div class="admin-panel">
-  <label for="csvInput" class="admin-btn">🏀 Import</label>
-  <input type="file" id="csvInput" accept=".csv" hidden>
-
-  <button id="exportBtn" class="admin-btn">⬇ Export</button>
-
-  <input type="text" id="searchInput" class="search-box" placeholder="🔎 Keresés">
+    <label for="csvInput" class="admin-btn">🏀 Import CSV</label>
+    <input type="file" id="csvInput" accept=".csv" hidden>
 </div>
-<main></main>
 
+<script type="module" src="gacc.js"></script>
 </body>
-
-<footer class="footer">
-  <p>
-    © 2026 Szabolcs Szekeres • Minden jog fenntartva!
-  </p>
-  <p class="footer-sub">
-    Grayson Allen Card Collection - Private NBA Trading Card Archive
-  </p>
-</footer>
 </html>

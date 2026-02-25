@@ -1,297 +1,256 @@
-/* ===== GLOBAL ===== */
+/* ===== GLOBAL STYLES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --gold: #facc15;
+  --bg-dark: #0b1120;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --border: rgba(250, 204, 21, 0.2);
+}
 
 body {
   margin: 0;
-  font-family: 'Cinzel', 'Segoe UI', serif;
-  background: radial-gradient(circle at top, #1e293b 0%, #0f172a 60%, #0b1120 100%);
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #1e293b 0%, #0f172a 60%, var(--bg-dark) 100%);
   color: #f8fafc;
+  min-height: 100vh;
 }
 
 main {
-  width: 92%;
-  max-width: 1200px;
-  margin: 150px auto 80px auto;
+  width: 95%;
+  max-width: 1400px;
+  margin: 140px auto 50px auto;
 }
 
-/* ===== HEADER ===== */
-
-header {
-  text-align: center;
-  padding: 60px 20px 30px;
-}
-
-header h1 {
-  font-size: 38px;
-  letter-spacing: 2px;
-  font-weight: 700;
-}
-
-header p {
-  opacity: 0.6;
-  font-style: italic;
-}
-
-/* ===== ADMIN PANEL ===== */
-
+/* ===== ADMIN & LOGIN ===== */
 .admin-panel {
   position: fixed;
   top: 25px;
   left: 25px;
   display: flex;
-  gap: 14px;
+  gap: 12px;
   z-index: 1000;
 }
 
 .admin-btn {
-  background: linear-gradient(135deg, #111827, #1f2937);
-  padding: 10px 20px;
-  border-radius: 12px;
-  color: #e5e7eb;
-  border: 1px solid rgba(255,255,255,0.1);
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  border-radius: 10px;
+  color: white;
   cursor: pointer;
   font-weight: 600;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
 .admin-btn:hover {
-  background: linear-gradient(135deg, #1f2937, #374151);
-  box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.3);
 }
 
-.search-box {
-  padding: 10px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: #0f172a;
-  color: white;
-  width: 240px;
-}
 
-/* ===== TEAM VAULT BLOCK ===== */
-
-.team-mappa {
-  background: linear-gradient(145deg, #1e293b, #0f172a);
-  border-radius: 20px;
-  box-shadow: 
-    0 15px 40px rgba(0,0,0,0.6),
-    inset 0 0 20px rgba(255,255,255,0.02);
+/* ===== DASHBOARD ===== */
+.stats-container {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 25px;
   margin-bottom: 40px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.stat h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 0 0 10px 0;
+}
+
+.stat p {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--gold);
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  margin-top: 20px;
   overflow: hidden;
 }
 
-.team-mappa > summary {
-  padding: 20px 26px;
-  font-size: 20px;
-  font-weight: 700;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  letter-spacing: 1px;
+#globalProgress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #f59e0b);
+  transition: width 0.8s ease;
 }
 
-/* ===== BRAND LEVEL ===== */
-
-.brand-mappa {
-  margin: 25px;
-  background: linear-gradient(145deg, #1b2533, #111827);
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.04);
-  box-shadow: inset 0 0 15px rgba(255,255,255,0.02);
-}
-
-.brand-mappa > summary {
-  padding: 16px 20px;
-  font-weight: 600;
-  font-size: 15px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  border-left: 3px solid rgba(255,215,0,0.3);
-  display: flex;
-  align-items: center;
-}
-
-/* ===== SERIES LEVEL (MÉG FINOMABB) ===== */
-
-.sorozat-mappa {
-  margin: 18px 25px;
-  background: linear-gradient(145deg, #141c29, #0f172a);
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.04);
-}
-
-.sorozat-mappa > summary {
-  padding: 14px 18px;
+/* ===== BREADCRUMB (NAVIGÁCIÓ) ===== */
+.breadcrumb {
+  font-family: 'Cinzel', serif;
+  padding: 15px;
+  color: #94a3b8;
   font-size: 14px;
-  opacity: 0.85;
-  border-left: 2px solid rgba(255,215,0,0.15);
-  display: flex;
-  align-items: center;
 }
 
-/* ===== COUNTERS (GOLD ACCENT) ===== */
+.breadcrumb span { cursor: pointer; transition: 0.2s; }
+.breadcrumb span:hover { color: var(--gold); }
+.breadcrumb .sep { margin: 0 10px; opacity: 0.5; }
+.breadcrumb .active { color: var(--gold); cursor: default; }
 
-.brand-count,
-.series-count {
-  margin-left: auto;
-  color: #facc15;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
 
-/* ===== CARD GRID ===== */
 
-.kartya-grid {
-  margin-top: 15px;
+/* ===== MAPPA RENDSZER ===== */
+.folder-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
   padding: 20px;
 }
 
-/* ===== CARD ITEM ===== */
-
-.kartya {
-  background: linear-gradient(145deg, #111827, #1e293b);
-  padding: 14px 16px;
-  border-radius: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid rgba(255,215,0,0.08);
-  transition: 0.3s ease;
-}
-
-.kartya:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-  border-color: rgba(255,215,0,0.2);
-}
-
-.kartya input {
-  transform: scale(1.2);
-}
-
-.kartya.megvan {
-  border: 1px solid rgba(255,215,0,0.6);
-  box-shadow:
-    0 0 10px rgba(255,215,0,0.2),
-    0 0 20px rgba(255,215,0,0.1),
-    inset 0 0 10px rgba(255,215,0,0.05);
-}
-
-
-/* ===== TEAM LOGO ===== */
-
-.team-logo {
-  height: 46px;
-  margin-right: 14px;
-  object-fit: contain;
-  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.6));
-}
-
-/* ===== FOOTER ===== */
-
-footer {
+.folder {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0 15px 15px 15px;
+  padding: 40px 20px;
   text-align: center;
-  padding: 35px 10px;
-  background: #0b1120;
-  font-size: 14px;
-  opacity: 0.7;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 15px;
 }
 
-/*  Szamlalo kinezet */
-.dashboard {
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 25px;
-  border-radius: 18px;
-  background: linear-gradient(145deg, #111827, #1f2937);
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,0.05);
+/* A mappa "füle" */
+.folder::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -1px;
+  width: 80px;
+  height: 16px;
+  background: #1e293b;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 10px 15px 0 0;
 }
 
-.dashboard {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  align-items: center;
-  justify-content: space-between;
+.folder:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  background: rgba(250, 204, 21, 0.1);
 }
 
-.stat {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  color: #cbd5e1;
+.folder-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
 }
 
-.stat span:last-child {
-  font-size: 20px;
+.folder-name {
+  font-family: 'Cinzel', serif;
   font-weight: 700;
   color: white;
+  letter-spacing: 1px;
 }
 
-.progress {
-  width: 100%;
-  height: 8px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 10px;
-  margin-top: 15px;
-  overflow: hidden;
+/* ===== KÁRTYA LISTA ===== */
+.card-grid { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 20px; }
+.card-item {
+  background: rgba(255,255,255,0.03);
+  padding: 15px 25px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  border-left: 4px solid transparent;
+}
+.card-item.owned {
+  border-left-color: var(--gold);
+  background: rgba(250, 204, 21, 0.05);
 }
 
-.progress-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #facc15, #f59e0b);
-  transition: width 0.4s ease;
-}
+.card-num { color: var(--gold); font-weight: bold; margin-right: 15px; }
 
-
-/* Login gomb */ 
-.login-btn {
-  background: linear-gradient(135deg, #111827, #1f2937);
-  padding: 10px 20px;
-  border-radius: 12px;
-  color: #e5e7eb;
-  border: 1px solid rgba(255,255,255,0.1);
+.folder {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0 15px 15px 15px;
+  padding: 30px 15px;
+  text-align: center;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s ease;
-}
-.login-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-}
-.print-run {
-    margin-left: 8px;
-    padding: 2px 8px;
-    font-size: 12px;
-    border-radius: 6px;
-    background: linear-gradient(90deg, gold, orange);
-    color: black;
-    font-weight: bold;
+  margin-top: 15px;
 }
 
-
-.rarity-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 10px;
-    margin-left: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #1e293b, #334155);
-    border: 1px solid rgba(255,255,255,0.1);
+.folder::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -1px;
+  width: 80px;
+  height: 16px;
+  background: rgba(30, 41, 59, 1); /* Sötét kitöltés a fülnek */
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 10px 15px 0 0;
 }
 
-.rarity-number {
-    color: #facc15;
+/* HEADER */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 20px 40px;
 }
 
-.rarity-total {
-    color: #94a3b8;
+header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 42px;
+  margin: 0;
+  letter-spacing: 5px;
+  color: var(--gold);
 }
 
+header p {
+  letter-spacing: 3px;
+  font-size: 14px;
+  opacity: 0.5;
+  margin-top: 10px;
+}
+/* ===== KERESŐMEZŐ STÍLUS (Admin gombok mintájára) ===== */
 
+#searchInput {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 500px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 15px 25px;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+#searchInput:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
+}
+
+/* A "Keresés..." helyőrző szöveg színe */
+#searchInput::placeholder {
+  color: #94a3b8;
+  opacity: 0.7;
+}

@@ -89,13 +89,13 @@ Utah Jazz;2018 - 2019;Panini Spectra;Next Era;7;Blue Neon /60;FALSE
 Utah Jazz;2018 - 2019;Panini Spectra;Next Era;7;Gold /10;FALSE
 Utah Jazz;2018 - 2019;Panini Spectra;Next Era;7;Neon Orange /5;FALSE
 Utah Jazz;2018 - 2019;Panini Spectra;Next Era;7;Nebula /1;FALSE
-Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;;/75;FALSE
-Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;;Blue Neon /60;FALSE
-Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;;Green Neon /49;FALSE
-Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;;Pink Neon /25;FALSE
-Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;;Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;;Neon Orange /5;FALSE
-Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;;Nebula /1;FALSE
+Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;RSS;/75;FALSE
+Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;RSS;Blue Neon /60;FALSE
+Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;RSS;Green Neon /49;FALSE
+Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;RSS;Pink Neon /25;FALSE
+Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;RSS;Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;RSS;Neon Orange /5;FALSE
+Utah Jazz;2018 - 2019;Panini Spectra;Rising Stars Signatures;RSS;Nebula /1;FALSE
 Utah Jazz;2018 - 2019;Panini Absolute;Rookie;76;Base;FALSE
 Utah Jazz;2018 - 2019;Panini Absolute;Absolute Memorabilia Rookie Threads;21AM;L1 /199;FALSE
 Utah Jazz;2018 - 2019;Panini Absolute;Absolute Memorabilia Rookie Threads;21AM;L2 /149;FALSE
@@ -257,9 +257,9 @@ Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Logoman ;20NT-RL;/5;FALS
 Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Materilas; 20NT-RM;Base /99;FALSE
 Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Materilas; 20NT-RM;Prime /25;FALSE
 Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Materilas; 20NT-RM;Super Prime /1;FALSE
-Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Triple Materilas;;Base /99;FALSE
-Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Triple Materilas;;Prime /25;FALSE
-Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Triple Materilas;;Super Prime /1;FALSE
+Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Triple Materilas;RTM;Base /99;FALSE
+Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Triple Materilas;RTM;Prime /25;FALSE
+Utah Jazz;2018 - 2019;Panini National Treasures ;Rookie Triple Materilas;RTM;Super Prime /1;FALSE
 Utah Jazz;2018 - 2019;Panini Chronicles  ;AU Gold Standard Rookie Jersey;20;Base /99;FALSE
 Utah Jazz;2018 - 2019;Panini Chronicles  ;AU Gold Standard Rookie Jersey;20;Prime /25;FALSE
 Utah Jazz;2018 - 2019;Panini Chronicles  ;AU Gold Standard Rookie Jersey;20;Super Prime /1;FALSE
@@ -279,7 +279,7 @@ Utah Jazz;2018 - 2019;Panini Immaculate; Rookie Patch Auto;110;Gold /10;FALSE
 Utah Jazz;2018 - 2019;Panini Immaculate; Rookie Patch Auto;110;Tags /3;FALSE
 Utah Jazz;2018 - 2019;Panini Immaculate; Rookie Patch Auto;110;Logoman /1;FALSE
 Utah Jazz;2018 - 2019;Panini Immaculate;Triple Autograph ;MB/GA/WC 15;/25;FALSE
-Utah Jazz;2018 - 2019;Panini Immaculate;The Standard ;;/99;TRUE
+Utah Jazz;2018 - 2019;Panini Immaculate;The Standard ;TS;/99;TRUE
 Utah Jazz;2018 - 2019;Panini Immaculate;Massive Memorabilia;3;/25;FALSE
 Utah Jazz;2018 - 2019;Panini Immaculate;Dual Auto ;GA/WC Jr. 15;/49;FALSE
 Utah Jazz;2018 - 2019;Panini Immaculate;Dual Auto ;GA/DM 33;/49;FALSE
@@ -400,9 +400,9 @@ Utah Jazz;2018 - 2019;Panini Dominion;Regal Rookie Signatures;26;Platinum /1;FAL
 Utah Jazz;2018 - 2019;Panini Dominion;Rookie Dual Signatures ;WCJ/GA;/25;FALSE
 Utah Jazz;2018 - 2019;Panini Dominion;Rookie Dual Signatures ;Gold WCJ/GA ;/10 ;FALSE
 Utah Jazz;2018 - 2019;Panini Dominion;Rookie Dual Signatures ;Platinum WCJ/GA; /1;FALSE
-Utah Jazz;2018 - 2019;Panini Dominion;Rookie Triple Signatures;;/25;FALSE
-Utah Jazz;2018 - 2019;Panini Dominion;Rookie Triple Signatures;;Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Dominion;Rookie Triple Signatures;;Platinum /1;FALSE
+Utah Jazz;2018 - 2019;Panini Dominion;Rookie Triple Signatures;RTS;/25;FALSE
+Utah Jazz;2018 - 2019;Panini Dominion;Rookie Triple Signatures;RTS;Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Dominion;Rookie Triple Signatures;RTS;Platinum /1;FALSE
 Utah Jazz;2018 - 2019;Panini Encased ;Rookie Endorsmends;111;Base /75;FALSE
 Utah Jazz;2018 - 2019;Panini Encased ;Rookie Endorsmends;111;Red /25;FALSE
 Utah Jazz;2018 - 2019;Panini Encased ;Rookie Endorsmends;111;Gold /10;FALSE
@@ -424,11 +424,11 @@ Utah Jazz;2018 - 2019;Panini Encased ;Rookie Jersey AU;210;Gold /10;FALSE
 Utah Jazz;2018 - 2019;Panini Encased ;Rookie Jersey AU;210;Green /5;FALSE
 Utah Jazz;2018 - 2019;Panini Encased ;Rookie Jersey AU;210;Platinum /1;FALSE
 Utah Jazz;2018 - 2019;Panini Encased ;Rookie Jerseys ;20;Base /99;FALSE
-Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;;/25;FALSE
-Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;;Ruby /15;FALSE
-Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;;Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;;Green /5;FALSE
-Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;;Platinum /1;FALSE
+Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;FPAU;/25;FALSE
+Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;FPAU;Ruby /15;FALSE
+Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;FPAU;Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;FPAU;Green /5;FALSE
+Utah Jazz;2018 - 2019;Panini Flawless ;Flawless Patch AU;FPAU;Platinum /1;FALSE
 Utah Jazz;2018 - 2019;Panini Flawless ;Horizontal Patch AU ;43;/15;FALSE
 Utah Jazz;2018 - 2019;Panini Flawless ;Horizontal Patch AU ;43;Ruby /15;FALSE
 Utah Jazz;2018 - 2019;Panini Flawless ;Horizontal Patch AU ;43;Gold /10;FALSE
@@ -444,10 +444,10 @@ Utah Jazz;2018 - 2019;Panini Flawless ;Vertical Patch AU;43VPAU;Ruby /15;FALSE
 Utah Jazz;2018 - 2019;Panini Flawless ;Vertical Patch AU;43VPAU;Gold /10;FALSE
 Utah Jazz;2018 - 2019;Panini Flawless ;Vertical Patch AU;43VPAU;Green /5;FALSE
 Utah Jazz;2018 - 2019;Panini Flawless ;Vertical Patch AU;43VPAU;Platinum /1;FALSE
-Utah Jazz;2018 - 2019;Panini Impeccable;Elegance Rookie Jersey AU;;Base /99;FALSE
-Utah Jazz;2018 - 2019;Panini Impeccable;Elegance Rookie Jersey AU;;Holo Silver /25;FALSE
-Utah Jazz;2018 - 2019;Panini Impeccable;Elegance Rookie Jersey AU;;Holo Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Impeccable;Elegance Rookie Jersey AU;;Platinum /1;FALSE
+Utah Jazz;2018 - 2019;Panini Impeccable;Elegance Rookie Jersey AU;ERJ;Base /99;FALSE
+Utah Jazz;2018 - 2019;Panini Impeccable;Elegance Rookie Jersey AU;ERJ;Holo Silver /25;FALSE
+Utah Jazz;2018 - 2019;Panini Impeccable;Elegance Rookie Jersey AU;ERJ;Holo Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Impeccable;Elegance Rookie Jersey AU;ERJ;Platinum /1;FALSE
 Utah Jazz;2018 - 2019;Panini Impeccable;Silver NBA Logo;10;/22;FALSE
 Utah Jazz;2018 - 2019;Panini Impeccable;Rookie Signatures;21;/99;FALSE
 Utah Jazz;2018 - 2019;Panini Impeccable;Rookie Signatures;21;Holo Silver /25;FALSE
@@ -462,22 +462,22 @@ Utah Jazz;2018 - 2019;Panini Noir;Rookie Icon;176;/85;FALSE
 Utah Jazz;2018 - 2019;Panini Noir;Rookie Icon;176;Holo Silver /25;FALSE
 Utah Jazz;2018 - 2019;Panini Noir;Rookie Icon;176;Holo Gold /10;FALSE
 Utah Jazz;2018 - 2019;Panini Noir;Rookie Icon;176;Platinum /1;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Rookie Patch AU;;Black and White/99;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Rookie Patch AU;;Tags /5;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Rookie Patch AU Color;;/99;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Rookie Patch AU Color;;Tags /5;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Elegantt Decor Rookie Jersey;;/65;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Elegantt Decor Rookie Jersey;;Tags /1;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;New Wave Jersey;;/99;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;New Wave Jersey;;Tags /1;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Rookie Patch AU;RPAU;Black and White/99;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Rookie Patch AU;RPAU;Tags /5;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Rookie Patch AU Color;RPAUC;/99;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Rookie Patch AU Color;RPAUC;Tags /5;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Elegantt Decor Rookie Jersey;EDRJU;/65;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Elegantt Decor Rookie Jersey;EDRJU;Tags /1;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;New Wave Jersey;NWJ;/99;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;New Wave Jersey;NWJ;Tags /1;FALSE
 Utah Jazz;2018 - 2019;Panini Noir;Rookie Jumbo Material;RJ-GAL;/99;true
 Utah Jazz;2018 - 2019;Panini Noir;Rookie Jumbo Material;RJ-GAL;Prime /6;FALSE
 Utah Jazz;2018 - 2019;Panini Noir;Rookie Jumbo Material;RJ-GAL;Brand Logo /5;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Reigning Nights Signatures;;/99;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Reigning Nights Signatures;;Holo Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Shadow Sigs;;/99;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Shadow Sigs;;Holo Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Noir;Spotlight Signaturesa Vertical;;/99;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Reigning Nights Signatures;RNS;/99;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Reigning Nights Signatures;RNS;Holo Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Shadow Sigs;SS;/99;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Shadow Sigs;SS;Holo Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Noir;Spotlight Signaturesa Vertical;SSV;/99;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rated Rookies ;156;Base;true
 Utah Jazz;2018 - 2019;Donruss;Rated Rookies ;156;Yellow Flood;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rated Rookies ;156;Green Flood;FALSE
@@ -504,13 +504,13 @@ Utah Jazz;2018 - 2019;Donruss;Rookie Kings;30;Purple Press Proof /49;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rookie Kings;30;Black Press Proof /49;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rookie Jerseys;27;Base;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rookie Jerseys;27;Prime /25;FALSE
-Utah Jazz;2018 - 2019;Donruss;Next Day Autograph;27NDA;;FALSE
+Utah Jazz;2018 - 2019;Donruss;Next Day Autograph;27NDA;Base;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rookie Dominator Signatures;27RDS;Base /99;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rookie Dominator Signatures;27RDS;Gold /10;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rookie Dominator Signatures;27RDS;Black /1;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rookie Material Signatures;23;/99;FALSE
 Utah Jazz;2018 - 2019;Donruss;Rookie Material Signatures;23;Prime /10;FALSE
-Utah Jazz;2018 - 2019;Donruss;Signature Series;51;;FALSE
+Utah Jazz;2018 - 2019;Donruss;Signature Series;51;Base;FALSE
 Utah Jazz;2018 - 2019;Donruss;Signature Series;51;Gold /10;FALSE
 Utah Jazz;2018 - 2019;Donruss;Significant Signatures;51SS;Base;FALSE
 Utah Jazz;2018 - 2019;Donruss;Significant Signatures;51SS;Green /5;FALSE
@@ -557,33 +557,33 @@ Utah Jazz;2018 - 2019;Panini Obsidian;Obsidian;RC 89;Green /15;FALSE
 Utah Jazz;2018 - 2019;Panini Obsidian;Obsidian;RC 89;Yellow /10;FALSE
 Utah Jazz;2018 - 2019;Panini Obsidian;Obsidian;RC 89;Red /5;FALSE
 Utah Jazz;2018 - 2019;Panini Obsidian;Obsidian;RC 89;White Mojo /1;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie AU;;/99;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie AU;;Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie AU;;Holo Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie AU;;Platinum /1;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patch AU;;/79;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patch AU;;Gold /25;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patch AU;;Holo Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patch AU;;Platinum /1;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie AU;RAU;/99;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie AU;RAU;Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie AU;RAU;Holo Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie AU;RAU;Platinum /1;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patch AU;RP-AU;/79;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patch AU;RP-AU;Gold /25;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patch AU;RP-AU;Holo Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patch AU;RP-AU;Platinum /1;FALSE
 Utah Jazz;2018 - 2019;Panini Opulence;Golden Rookie Quad Booklet;GA/JR/KH/MB;/20;FALSE
 Utah Jazz;2018 - 2019;Panini Opulence;Golden Rookie Quad Booklet;DD/GA/SGA/TY;/5;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Golden Rookie  Brand Logo;;/2;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Golden Rookie  Brand Logo;GRBL;/2;FALSE
 Utah Jazz;2018 - 2019;Panini Opulence;Golden Rookie  Brand Logo;CS/GA/SGA/TY;/2;FALSE
 Utah Jazz;2018 - 2019;Panini Opulence;Golden Rookie Booklet Logo;GA/JR/KH/MB;/1;FALSE
 Utah Jazz;2018 - 2019;Panini Opulence;Golden Rookie Booklet Logo;CS/GA/SGA/TY;/1;FALSE
 Utah Jazz;2018 - 2019;Panini Opulence;Golden Rookie Booklet Logo;DD/GA/SGA/TY;/1;FALSE
 Utah Jazz;2018 - 2019;Panini Opulence;Golden Rookie Quad Booklet;GA/JR/KH/MB;/1;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patches Booklet;;/20;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patches Booklet;;Brand Logo /5;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patches Booklet;;Sponsor Logo /4;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patches Booklet;;Tags /4;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;;/99;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;;Gold /25;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;;Brand Logo /5;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;;Nameplate /5;FALSE
-Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;;Sponsor Logo /5;FALSE
-Utah Jazz;2018 - 2019;Panini Player of The Day ;Panini PoTD AU;;Base;FALSE
-Utah Jazz;2018 - 2019;Panini Player of The Day ;Memorabilia;GA;;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patches Booklet;RPB;/20;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patches Booklet;RPB;Brand Logo /5;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patches Booklet;RPB;Sponsor Logo /4;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Rookie Patches Booklet;RPB;Tags /4;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;NRS;/99;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;NRS;Gold /25;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;NRS;Brand Logo /5;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;NRS;Nameplate /5;FALSE
+Utah Jazz;2018 - 2019;Panini Opulence;Nouveau Riche Signatures;NRS;Sponsor Logo /5;FALSE
+Utah Jazz;2018 - 2019;Panini Player of The Day ;Panini PoTD AU;PP;Base;FALSE
+Utah Jazz;2018 - 2019;Panini Player of The Day ;Memorabilia;GA;Base;FALSE
 Utah Jazz;2018 - 2019;Panini Player of The Day ;Rookies;R10;Base;TRUE
 Utah Jazz;2018 - 2019;Panini Player of The Day ;Rookies;R10;Checkerboard /30;FALSE
 Utah Jazz;2018 - 2019;Panini Player of The Day ;Rookies;R10;Rapture /20;FALSE
@@ -683,22 +683,22 @@ Utah Jazz;2018 - 2019;Panini Select;Rookie Jersey AU;4;Purple /49;FALSE
 Utah Jazz;2018 - 2019;Panini Select;Rookie Jersey AU;4;Tie Dye /25;FALSE
 Utah Jazz;2018 - 2019;Panini Select;Rookie Jersey AU;4;Gold /10;FALSE
 Utah Jazz;2018 - 2019;Panini Select;Rookie Jersey AU;4;Black /1;FALSE
-Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;;/199;FALSE
-Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;;Neon Green /99;FALSE
-Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;;Tie Dye /25;FALSE
-Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;;Gold /10;FALSE
-Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;;Black /1;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Base;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Blue Foil;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Red Foil;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;/99;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Cracked Ice /23;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Playoff Ticket /15;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Championsship Ticket /1;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Printing Plates Yellow /1;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Printing Plates Magenta /1;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Printing Plates Cyan /1;FALSE
-Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;;Printing Plates Black /1;FALSE
+Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;RS;/199;FALSE
+Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;RS;Neon Green /99;FALSE
+Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;RS;Tie Dye /25;FALSE
+Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;RS;Gold /10;FALSE
+Utah Jazz;2018 - 2019;Panini Select;Rookie Signatures;RS;Black /1;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Base;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Blue Foil;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Red Foil;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;/99;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Cracked Ice /23;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Playoff Ticket /15;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Championsship Ticket /1;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Printing Plates Yellow /1;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Printing Plates Magenta /1;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Printing Plates Cyan /1;FALSE
+Utah Jazz;2018 - 2019;Panini Contenders;Draft Picks College Ticket AU;DPCT;Printing Plates Black /1;FALSE
 Utah Jazz;2018 - 2019;Panini Contenders;Game Day Ticket;29;Base;TRUE
 Utah Jazz;2018 - 2019;Panini Contenders;Game Day Ticket;29;Cracked Ice /23;FALSE
 Utah Jazz;2018 - 2019;Panini Contenders;Game Day Ticket;29;Championsship /1;FALSE
@@ -835,45 +835,305 @@ Memphis Grizzlies;2020 - 2021;Panini Flux;Flux;90;Mojo Red /49;FALSE
 Memphis Grizzlies;2020 - 2021;Panini Flux;Flux;90;Mojo Blue /99;FALSE
 Memphis Grizzlies;2020 - 2021;Panini Flux;Flux;90;Mojo Gold /10;FALSE
 Memphis Grizzlies;2020 - 2021;Panini Flux;Flux;90;Mojo Black /1;FALSE
-Memphis Grizzlies;2020 - 2021;Panini Hoops;Great Significance;39;Base;
-Memphis Grizzlies;2020 - 2021;Panini Hoops;Great Significance;39;Gold /10;
-Memphis Grizzlies;2020 - 2021;Panini Immaculate;Past and Present Signatures;3;/49;
-Memphis Grizzlies;2020 - 2021;Panini Immaculate;Past and Present Signatures;3;Gold /10;
-Memphis Grizzlies;2020 - 2021;Panini Immaculate;Past and Present Signatures;3;Platinum /1;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Base;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Mosaic;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Blue Reactive ;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Camo Pink;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Silver;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Genesis;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Gold Wave;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Green ;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Green Reactive;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Ice;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Oprange Reactive;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Peacock Choice;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Red Reactive;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Red;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Silver;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Wave Red;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Yellow Reactive;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Blue Mosaic /99;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fusion Red and Yellow /88;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Blue /85;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Purple /50;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Purple /49;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Orange Fluorescent /25;
+Memphis Grizzlies;2020 - 2021;Panini Hoops;Great Significance;39;Base;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Hoops;Great Significance;39;Gold /10;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Immaculate;Past and Present Signatures;3;/49;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Immaculate;Past and Present Signatures;3;Gold /10;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Immaculate;Past and Present Signatures;3;Platinum /1;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Base;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Mosaic;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Blue Reactive ;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Camo Pink;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Silver;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Genesis;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Gold Wave;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Green ;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Green Reactive;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Ice;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Oprange Reactive;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Peacock Choice;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Red Reactive;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Red;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Silver;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Wave Red;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Yellow Reactive;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Blue Mosaic /99;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fusion Red and Yellow /88;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Blue /85;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Purple /50;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Purple /49;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Orange Fluorescent /25;FALSE
 Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;White /25;TRUE
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Pink /20;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Blue Fluorescent /15;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Pink Swire /11;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Gold /10;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Gold /10;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Green Fluorescent /10;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Green Swirl /10;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Pink Fluorescent /10;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Black Gold Choice /8;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Lucky Envelopes /8;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Black /1;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Black /1;
-Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Nebula Choice /1;
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Pink /20;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Blue Fluorescent /15;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Pink Swire /11;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Gold /10;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Gold /10;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Green Fluorescent /10;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Green Swirl /10;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Pink Fluorescent /10;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Black Gold Choice /8;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Lucky Envelopes /8;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Fast Break Black /1;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Black /1;FALSE
+Memphis Grizzlies;2020 - 2021;Panini Mosaic;Mosaic;17;Nebula Choice /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Immaculate;Past and Present Signautres;10;Base /49;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Immaculate;Past and Present Signautres;10;Red /25;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Immaculate;Past and Present Signautres;10;Gold /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Immaculate;Past and Present Signautres;10;Platinum /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Airborne Signatures;21;/149;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Airborne Signatures;21;Asia Jade;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Airborne Signatures;21;Red;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Airborne Signatures;21;Silver /99;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Airborne Signatures;21;Blue /25;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Airborne Signatures;21;Gold /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Airborne Signatures;21;Black /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Apprentice Signatures;36;/99;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Apprentice Signatures;36;Asia Jade;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Apprentice Signatures;36;Red;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Apprentice Signatures;36;Blue /75;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Apprentice Signatures;36;Purple /25;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Apprentice Signatures;36;Gold /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Apprentice Signatures;36;Asia Gold /5;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Chronicles  ;Apprentice Signatures;36;Platinum /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Illusions;Trophy Collection;TC-GAM;Base;TRUE
+Milwaukee Bucks;2021 - 2022;Panini Illusions;Trophy Collection;TC-GAM;Red and Yellow Asia;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Illusions;Trophy Collection;TC-GAM;Sapphire;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Illusions;Trophy Collection;TC-GAM;Emerald /25;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Illusions;Trophy Collection;TC-GAM;Orange /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Illusions;Trophy Collection;TC-GAM;Pink /5;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Base;TRUE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Mosaic;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Anniversary Edition;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Fast Break Silver;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Genesis;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Green;TRUE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Green Ice;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;NBA 75 Anniversary;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Peacock Choice;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Red;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Red Wave;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Silver;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;White Sparkle;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Blue /99;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Red and Yellow Fusion Choice /88;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Fast Break Blue /85;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Fast Break Purple /50;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Purple /49;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Orange Fluorescent /25;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;White /25;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Fast Break Pink /20;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Pink Swirl FOTL /11;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Fast Break Gold /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Gold /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Green Swirl FOTL /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Black Gold Choice /8;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Lucky Envelopes /8;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Black /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Fast Break Black /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Mosaic;105;Nebula /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Mosaic;Starting 5;BP/GA/GA/JH/KM;Base;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Base;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Holo;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Dots;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Pink;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Bronz /299;TRUE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Red /199;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Blue /99;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Purple /49;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Orange FOTL /18;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Gold /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Green /5;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Platinum Swirl FOTL /3;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Recon;87;Platinum /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Glorified Signatures;GS-GRY;Base /199;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Glorified Signatures;GS-GRY;Red /99;TRUE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Glorified Signatures;GS-GRY;Blue /49;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Glorified Signatures;GS-GRY;Purple /25;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Glorified Signatures;GS-GRY;Gold /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Glorified Signatures;GS-GRY;Green /5;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Recon;Glorified Signatures;GS-GRY;Platinum /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Spectra;Catalysts;Cat;Base /99;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Spectra;Catalysts;Cat;Asia;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Spectra;Catalysts;Cat;Astral /49;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Spectra;Catalysts;Cat;Meta /25;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Spectra;Catalysts;Cat;Gold /10;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Spectra;Catalysts;Cat;Marble /5;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Spectra;Catalysts;Cat;Gold Asia /3;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Spectra;Catalysts;Cat;Black Asia /1;FALSE
+Milwaukee Bucks;2021 - 2022;Panini Spectra;Catalysts;Cat;Nebula /1;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Base;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Choice Dragon;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Green Laser;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Red and Gold Laser;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Silver Press Proof;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Yellow Flood;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Purple Press Proof /199;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Laser /149;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Choice Red /99;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Purple Laser /99;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Red Laser /99;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Basketball /75;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Pink Laser /50;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Blue Laser /49;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Choice Blue /49;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Light Blue Laser /25;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Yellow Laser /25;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Red and Blue Laser /15;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Choice Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Gold Laser /10;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Choice Black Gold /8;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Black Laser /1;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss ;Donruss;57;Choice Black /1;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Base;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Basketball;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Checkerboard;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Dragon Choice;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Green Shock;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Holo;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Holo Fast Break;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Hyper Green;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Hyper Pink;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Photon;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Purple;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Purple Shock;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Red and Green Choice;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Red Sparkle;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Wave Red;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;White Sparkle;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Premium Box Set /249;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Orange /199;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Blue Sparkle /180;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Lime Green /149;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Copper Glitter /99;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Purple Fast Break /99;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Red /99;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Wave Red and Gold /99;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Red Choice /88;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Pink Velocity /79;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Red Fast Break /75;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Blue /49;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Blue Fast Break /49;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Black Velocity /39;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Pink Fast Break /25;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Blue Mojo Choice /24;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Gold Sparkle /24;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Purple Stars FOTL /17;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Two Tone /15;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Gold Fast Break /10;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Wave Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Black Gold Choice /8;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Green Sparkle /8;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Lucky Envelopes /8;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Green /5;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Black /1;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Black Fast Break /1;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Gold Vinyl /1;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Optic;83;Nebula Choice /1;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Base;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Asia;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Hyper Red and Green Asia;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Orange;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Blue /99;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Hyper Red Asia /88;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Aspirations /88;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Purple /49;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Pink FOTL /17;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Status /12;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Hyper Gold Asia /10;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Lucky Envelopes Asia /8;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Platinum FOTL /3;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Elite;76;Elite /1;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Impact Impressions;36;Base;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Impact Impressions;36;Red and Green Asia;TRUE
+Milwaukee Bucks;2022 - 2023;Donruss;Impact Impressions;36;Red /49;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Impact Impressions;36;Blue /25;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Impact Impressions;36;Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Impact Impressions;36;Red and Gold Asia /10;FALSE
+Milwaukee Bucks;2022 - 2023;Donruss;Impact Impressions;36;Black /1;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Base;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Blue;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Hyper Blue;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Impulse;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Neon Green ;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Purple;TRUE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Purple Winter;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Red Backs;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Teal Explosion;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Winter;TRUE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Yellow;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Premium Box Set /199;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Silver /199;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Green /99;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Hyper Red /99;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Gravity /75;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Red /75;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Blue Explosion /59;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Artist Proof /25;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Hyper Green /25;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Neon Orange Explosion /25;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Red Explosinon /15;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Artist Proof Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Hyper Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Hoops;47;Artist Proof Black /1;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Great Significance;24;Base;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Great Significance;24;Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Immaculate;Modern Marks;MM;Base /99;TRUE
+Milwaukee Bucks;2022 - 2023;Panini Immaculate;Modern Marks;MM;Red /25;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Immaculate;Modern Marks;MM;Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Immaculate;Modern Marks;MM;Platinum /1;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Chronicles  ;Under the Lights AU;UL-AU;Base /99;TRUE
+Milwaukee Bucks;2022 - 2023;Panini ;Under the Lights AU;UL-AU;Asia Jade;TRUE
+Milwaukee Bucks;2022 - 2023;Panini ;Under the Lights AU;UL-AU;Red;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Under the Lights AU;UL-AU;Silver ;TRUE
+Milwaukee Bucks;2022 - 2023;Panini ;Under the Lights AU;UL-AU;Purple /49;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Under the Lights AU;UL-AU;Swirl /25;TRUE
+Milwaukee Bucks;2022 - 2023;Panini ;Under the Lights AU;UL-AU;Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Under the Lights AU;UL-AU;Asia Red and Gold /5;FALSE
+Milwaukee Bucks;2022 - 2023;Panini ;Under the Lights AU;UL-AU;Black /1;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Base;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Mojo Silver;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Moonlight;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Red;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Red Cracked Ice;TRUE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Silver;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Sunrise;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Blue /99;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Mojo Red /99;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Supernova /75;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Solar Eclipse /49;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Blue Cracked Ice /25;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Lunar Eclipse /25;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Mojo Blue /25;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Gold Cracked Ice /10;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Mojo Gold /10;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Lucky Envelopes /8;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Green /5;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Flux;Flux;63;Gold Vinyl /1;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Base;TRUE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Mosaic;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Blue Wave;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Genesis;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Glitter;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Green;TRUE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Green Ice;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Peacock Choice;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Reactive Blue;TRUE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Reactive Yellow;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Red;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Red and Green Choice;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Silver;TRUE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Silver Fast Break;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Wave Red;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;White Sparkle;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Blue /199;TRUE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Pink /149;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Purple /99;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Red and Yellow Fusion Choice /88;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Blue Fast Break /85;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Purple Fast Break /50;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;Orange Fluorescent /25;FALSE
+Milwaukee Bucks;2022 - 2023;Panini Mosaic;Mosaic;144;White /25;FALSE
