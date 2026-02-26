@@ -250,6 +250,15 @@ main {
     opacity: 0.8;
 }
 
+/* Keresési találatnál megjelenő plusz infó */
+.card-subtext {
+    font-size: 12px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+}
+
 /* Statisztikai kártyák "Glass" stílusa */
 .stats-container {
   max-width: 900px;
@@ -268,23 +277,20 @@ main {
 
 .stat {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
+  align-items: center; /* Egy vonalba teszi őket */
+  gap: 10px;           /* EZEZ ADJA A SZÜKSÉGES TÁVOLSÁGOT */
+  padding: 10px 20px;
 }
 
 .stat span:first-child {
-  font-size: 20px;
-  text-transform: uppercase;
   color: #94a3b8;
-  letter-spacing: 1px;
+  font-size: 14px;
 }
 
 .stat span:last-child {
-  font-size: 25px;
-  font-weight: 700;
   color: var(--gold);
-  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 /* HEADER */
