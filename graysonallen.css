@@ -2,23 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
 :root {
-  --gold: #facc15;
-  --bg-dark: #0b1120;
-  --border: rgba(255, 255, 255, 0.1);
+  --bg-dark: #020617;
+  --team-color: #00ff88; /* Alap neon szín, a JS írja felül */
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --glass: rgba(15, 23, 42, 0.7);
 }
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #1e293b 0%, #0f172a 60%, var(--bg-dark) 100%);
-  color: #f8fafc;
+  background-color: var(--bg-dark);
+  /* Finom sötét hatszög minta a háttérben */
+  background-image: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.9)), 
+                    url("https://www.transparenttextures.com/patterns/hexellence.png");
+  color: #ffffff;
   min-height: 100vh;
 }
-
 main {
   width: 95%;
-  max-width: 1400px;
-  margin: 140px auto 50px auto;
+  max-width: 1200px;
+  margin: 220px auto 50px auto;
 }
 
 /* ===== ADMIN & LOGIN ===== */
@@ -113,20 +116,21 @@ main {
 
 /*Folder*/
 /* ===== MAPPA RENDSZER ===== */
-.folder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 40px; padding: 20px; }
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+}
 
 .folder {
-  --team-color: #334155; 
   position: relative;
-  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 0 24px 24px 24px;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 40px 20px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  margin-top: 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 /* A mappa "füle" */
@@ -146,9 +150,10 @@ main {
 }
 
 .folder:hover {
-  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.07);
   border-color: var(--team-color);
-  box-shadow: 0 0 30px var(--team-color);
+  box-shadow: 0 0 25px var(--team-color);
+  transform: translateY(-5px) scale(1.02);
 }
 
 
@@ -171,19 +176,26 @@ main {
     transform: scale(1.1); /* Kicsit megnő hoverre */
 }
 
-.folder-name { font-family: 'Cinzel', serif; font-size: 18px; color: white; }
+.folder-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  letter-spacing: 1px;
+}
 
 .folder-tab {
   position: absolute;
-  top: -18px;
-  left: -1px;
-  width: 100px;
-  height: 20px;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
   background: var(--team-color);
-  clip-path: polygon(0% 100%, 15% 0%, 85% 0%, 100% 100%);
-  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 10px var(--team-color);
 }
-.folder-logo { width: 100px; height: 100px; object-fit: contain; margin-bottom: 20px; transition: 0.4s; }
+
+.folder-logo {
+  max-width: 100px;
+  max-height: 80px;
+  filter: drop-shadow(0 0 5px var(--team-color));
+}
 
 .folder:hover .folder-logo { transform: scale(1.1) rotate(5deg); }
 
@@ -196,11 +208,36 @@ main {
 }
 
 /* ===== KÁRTYA LISTA ===== */
-.card-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-.card-item { background: rgba(255,255,255,0.03); padding: 15px 25px; border-radius: 12px; display: flex; justify-content: space-between; border-left: 4px solid transparent; }
-.card-item.owned { border-left-color: var(--gold); background: rgba(250, 204, 21, 0.05); }
+.card-grid { display: flex; flex-direction: column; gap: 12px; }
 
-.card-num { color: var(--gold); font-weight: bold; margin-right: 15px; }
+.card-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 15px 30px;
+  border-right: 4px solid #334155; /* Alap szegély */
+  transition: 0.3s;
+}
+
+.card-item.owned {
+  border-right: 4px solid var(--team-color);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset -10px 0 20px rgba(var(--team-color-rgb), 0.1);
+}
+
+.card-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--team-color);
+}
+
+.card-num {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--team-color);
+  font-size: 1.1rem;
+  text-shadow: 0 0 5px var(--team-color);
+}
 
 .folder {
   position: relative;
@@ -244,6 +281,8 @@ main {
     display: flex;
     align-items: center;
 }
+
+.card-name { font-weight: 600; font-size: 1.1rem; }
 
 /* Ha be van pipálva, a név kicsit halványabb lehet, mint egy elvégzett feladat */
 .card-item.owned .card-name {
@@ -295,19 +334,25 @@ main {
 
 /* HEADER */
 header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  padding: 30px 20px;
   text-align: center;
-  padding: 60px 20px 40px;
+  border-bottom: 2px solid var(--team-color);
+  box-shadow: 0 0 20px var(--team-color);
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  transition: all 0.5s ease;
 }
 
 header h1 {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(32px, 6vw, 48px);
-  color: var(--gold);
+  font-family: 'Orbitron', sans-serif;
   margin: 0;
+  font-size: 2rem;
   letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--team-color);
 }
 
 header p {
@@ -325,16 +370,16 @@ header p {
 }
 #searchInput {
   width: 100%;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 15px 25px;
+  max-width: 400px;
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--team-color);
+  border-radius: 4px;
   color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  outline: none;
-  transition: 0.3s;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  box-shadow: inset 0 0 5px var(--team-color);
 }
 
 
@@ -451,4 +496,52 @@ header p {
         border-radius: 15px;
         padding: 10px 15px;
     }
+
+    /* ===== PRÉMIUM STÍLUS A SZÁMOZOTT KÁRTYÁKNAK ===== */
+
+/* Alapstílus a számozott kártya dobozának */
+.card-item.numbered-card {
+  border: 1px solid #eab308;
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.3);
+}
+
+/* Egy halvány csillogás effekt a háttérben */
+.card-item.numbered-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ha a számozott kártya meg is van (Owned), erősebb effekt */
+.card-item.numbered-card.owned {
+    box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2); /* Finom arany külső ragyogás */
+    border-left: 4px solid var(--gold); /* Marad az arany sáv */
+}
+
+/* Hover effekt turbózása a számozott lapoknál */
+.card-item.numbered-card:hover {
+    border-color: rgba(250, 204, 21, 0.8);
+    box-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
+    transform: translateX(5px) scale(1.01); /* Kicsit jobban kiemelkedik */
+}
+
+.card-meta {
+  font-family: 'Orbitron', sans-serif;
+  color: #eab308;
+  font-weight: bold;
+}
+
+/* A perjel és a szám kiemelése arannyal */
+.card-item.numbered-card .card-meta {
+    color: var(--gold);
+    font-weight: bold;
+    font-family: 'Cinzel', serif; /* Használjuk a fejléc elegáns betűtípusát */
+    letter-spacing: 1px;
+}
 }
