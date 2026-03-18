@@ -17,15 +17,21 @@ const teamConfig = {
     "Memphis Grizzlies": { color: "#5D76A9", logo: "grizzlies.png" },
     "Milwaukee Bucks": { color: "#00471B", logo: "bucks.png" },
     "Phoenix Suns": { color: "#E56020", logo: "suns.png" },
-    "Utah Jazz": { color: "#002B5C", logo: "jazz.png" },
+    "Utah Jazz": { color: "#0a478d", logo: "jazz.png" },
     "default": { color: "#334155", logo: "nba.png" }
+};
+
+const teamColors = {
+    "Milwaukee Bucks": "#00471B",
+    "Phoenix Suns": "#1D1160",
+    "Memphis Grizzlies": "#5D76A9",
+    "Utah Jazz": "#0a478d"
 };
 
 let allCards = [];
 let currentPath = { team: null, year: null, brand: null, series: null };
 let currentLevel = 'teams';
 
-// Adatok betöltése
 async function loadCollection() {
     try {
         const querySnapshot = await getDocs(collection(db, "cards"));
@@ -37,7 +43,6 @@ async function loadCollection() {
     }
 }
 
-// Statisztikák frissítése
 function updateDashboard() {
     const total = allCards.length;
     const owned = allCards.filter(c => c.owned === true).length;
@@ -50,7 +55,6 @@ function updateDashboard() {
     document.getElementById("globalProgress").style.width = percent + "%";
 }
 
-// --- KERESŐ FUNKCIÓ (Most már benne van!) ---
 function setupSearch() {
     const searchInput = document.getElementById("searchInput");
     if (!searchInput) return;
@@ -60,7 +64,7 @@ function setupSearch() {
         const container = document.getElementById("folderContainer");
 
         if (term === "") {
-            renderView(); // Ha üres, visszatérünk a mappákhoz
+            renderView();
             return;
         }
 
@@ -78,16 +82,29 @@ function setupSearch() {
             return;
         }
 
+        filtered.sort((a, b) => {
+                                    const runA = parseInt(a.printRun) || 0;
+                                const runB = parseInt(b.printRun) || 0;
+                                if (runA === 0 && runB === 0) return 0;
+                                if (runA === 0) return -1;
+                                if (runB === 0) return 1;
+                                return runB - runA;
+                                });
+
         filtered.forEach(c => renderSingleCard(c, container));
     });
 }
 
-// Navigáció és Mappák megjelenítése
 function renderView() {
+
     const container = document.getElementById("folderContainer");
     if (!container) return;
     container.innerHTML = "";
     container.className = "folder-grid";
+
+    // Globális szín frissítése (fejlécnek és kártyáknak)
+    const activeColor = teamConfig[currentPath.team]?.color || teamConfig.default.color;
+    document.documentElement.style.setProperty('--team-color', activeColor);
     updateBreadcrumb();
 
     if (currentLevel === 'teams') {
@@ -121,16 +138,22 @@ function renderView() {
 function createFolder(name, isTeam, emoji, onClick) {
     const div = document.createElement("div");
     div.className = "folder";
-    const config = isTeam ? (teamConfig[name] || teamConfig.default) : teamConfig.default;
-    div.style.setProperty('--team-color', config.color);
+    
+    // Szín meghatározása
+    const teamName = isTeam ? name : currentPath.team;
+    const color = teamConfig[teamName]?.color || teamConfig.default.color;
+    
+    // Átadjuk a színt a CSS-nek
+    div.style.setProperty('--team-color', color);
     div.onclick = onClick;
 
     let content = `<div class="folder-tab"></div>`;
     if (isTeam) {
-        content += `<img src="${config.logo}" class="folder-logo" onerror="this.src='nba.png'"><div class="folder-name">${name}</div>`;
+        content += `<img src="${teamConfig[name]?.logo || 'nba.png'}" class="folder-logo"><div class="folder-name">${name}</div>`;
     } else {
         content += `<div style="font-size:40px; margin-bottom:10px;">${emoji}</div><div class="folder-name">${name}</div>`;
     }
+    
     div.innerHTML = content;
     document.getElementById("folderContainer").appendChild(div);
 }
@@ -144,33 +167,50 @@ function renderCards(container) {
     );
     container.innerHTML = "";
     container.className = "card-grid";
-    cards.sort((a,b) => String(a.cardNumber).localeCompare(String(b.cardNumber), undefined, {numeric:true}))
-         .forEach(c => renderSingleCard(c, container));
+
+    // --- ÚJ, OKOS SORREND ---
+    cards.sort((a, b) => {
+        const runA = parseInt(a.printRun) || 0; // Ha nincs szám, legyen 0
+        const runB = parseInt(b.printRun) || 0;
+
+        // 1. Szabály: Ha mindkettő Base (0), akkor a kártyaszám döntsön (#1, #2...)
+        if (runA === 0 && runB === 0) {
+            return String(a.cardNumber).localeCompare(String(b.cardNumber), undefined, {numeric:true});
+        }
+
+        // 2. Szabály: A Base lap (0) mindig kerüljön előre
+        if (runA === 0) return -1;
+        if (runB === 0) return 1;
+
+        // 3. Szabály: Ha mindkettő számozott, csökkenő sorrend (magasabb szám elöl)
+        return runB - runA; 
+    });
+
+    cards.forEach(c => renderSingleCard(c, container));
 }
 
-// --- EGY KÁRTYA MEGJELENÍTÉSE (Ez hiányzott!) ---
 function renderSingleCard(c, container) {
     const div = document.createElement("div");
-    // Ha megvan a kártya, megkapja az 'owned' osztályt a stílushoz
-    div.className = `card-item ${c.owned ? 'owned' : ''}`;
-    
-    const checkboxId = `check-${c.id}`; 
+
+
+    // --- ÚJ RÉSZ: Plusz osztály hozzáadása, ha számozott a lap ---
+    const numberedClass = c.printRun ? 'numbered-card' : '';
+    div.className = `card-item ${c.owned ? 'owned' : ''} ${numberedClass}`.trim();
     
     div.innerHTML = `
         <div class="card-info">
-            <input type="checkbox" id="${checkboxId}" ${c.owned ? 'checked' : ''} class="card-checkbox">
-            <label for="${checkboxId}" style="display: flex; flex-direction: column; cursor: pointer;">
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <span class="card-num">#${c.cardNumber}</span>
-                    <span class="card-name">${c.baseName}</span>
-                </div>
-                <span class="card-subtext">${c.year} | ${c.brand} | ${c.series}</span>
-            </label>
+            <input type="checkbox" ${c.owned ? 'checked' : ''} class="card-checkbox">
+            <div class="card-main-data">
+                <span class="card-num">#${c.cardNumber}</span>
+                <span class="card-name">${c.baseName}</span>
+                <span class="card-subtext">${c.year} | ${c.brand}</span>
+            </div>
         </div>
-        <div class="card-meta">${c.printRun ? '/' + c.printRun : ''}</div>
+        <div class="card-actions">
+            <div class="card-meta">${c.printRun ? '/' + c.printRun : ''}</div>
+        </div>
     `;
 
-    // Interaktív pipa kezelés
     const checkbox = div.querySelector('input');
     checkbox.addEventListener('change', (e) => {
         toggleOwnedStatus(c.id, e.target.checked, div);
@@ -216,7 +256,6 @@ window.goToLevel = (lvl) => {
     renderView(); 
 };
 
-// CSV Import
 async function handleCSV(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -224,19 +263,28 @@ async function handleCSV(e) {
     reader.onload = async (event) => {
         const rows = event.target.result.split(/\r?\n/).filter(r => r.trim() !== "").slice(1);
         const batch = writeBatch(db);
+        
         rows.forEach(row => {
             const p = row.split(";").map(s => s.trim());
             if (p.length < 7) return;
+            
             const [team, year, brand, series, cardNum, cardRaw, ownedStr] = p;
-            const name = cardRaw.split("/")[0].trim();
-            const key = `${year}-${brand}-${series}-${cardNum}-${name}`.replace(/[^a-zA-Z0-9]/g, '_');
+            const parts = cardRaw.split("/");
+            const name = parts[0].trim();
+            const printRun = parts[1] ? parts[1].trim() : ""; 
+            
+            const key = `${year}-${brand}-${series}-${cardNum}-${name}-${printRun}`.replace(/[^a-zA-Z0-9]/g, '_');
+            
             batch.set(doc(db, "cards", key), {
                 team, year, brand, series, cardNumber: cardNum, baseName: name,
+                printRun: printRun,
                 owned: ownedStr.toUpperCase() === "TRUE" || ownedStr.toUpperCase() === "IGAZ",
                 updatedAt: serverTimestamp()
             });
         });
+        
         await batch.commit();
+        alert("Sikeres importálás!");
         loadCollection();
     };
     reader.readAsText(file);
@@ -244,6 +292,6 @@ async function handleCSV(e) {
 
 document.addEventListener("DOMContentLoaded", () => {
     loadCollection();
-    setupSearch(); // Ez most már működni fog!
+    setupSearch();
     document.getElementById("csvInput")?.addEventListener("change", handleCSV);
 });
