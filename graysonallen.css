@@ -1,547 +1,346 @@
-/* ===== GLOBAL STYLES ===== */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap');
+/* ===== 1. GLOBÁLIS STÍLUSOK ÉS VÁLTOZÓK ===== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
 
 :root {
-  --bg-dark: #020617;
-  --team-color: #00ff88; /* Alap neon szín, a JS írja felül */
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --glass: rgba(15, 23, 42, 0.7);
+    --gold: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    --gold-solid: #bf953f;
+    --metal: linear-gradient(135deg, #444 0%, #222 50%, #111 100%);
+    --bg-dark: #0a0a0a;
+    --border: rgba(255, 255, 255, 0.1);
+    --glass: rgba(0, 0, 0, 0.6);
 }
 
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--bg-dark);
-  /* Finom sötét hatszög minta a háttérben */
-  background-image: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.9)), 
-                    url("https://www.transparenttextures.com/patterns/hexellence.png");
-  color: #ffffff;
-  min-height: 100vh;
-}
-main {
-  width: 95%;
-  max-width: 1200px;
-  margin: 220px auto 50px auto;
+    background-color: var(--bg-dark);
+    background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
+    color: #f8fafc;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    min-height: 100vh;
 }
 
-/* ===== ADMIN & LOGIN ===== */
-.admin-panel {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1000; /* Mindig legfelül legyen */
-}
-.admin-btn {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  transition: 0.3s;
-  display: block;
-}
-
-.admin-btn:hover {
-  background: var(--gold);
-  color: black;
-  box-shadow: 0 0 15px var(--gold-glow);
-}
-
-
-/* ===== DASHBOARD ===== */
-.stats-container {
-  background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 40px;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  text-align: center;
-}
-
-.stat h3 {
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #94a3b8;
-  margin: 0 0 10px 0;
-}
-
-.stat p {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0;
-  color: var(--gold);
-}
-
-.progress-bar-bg {
-  width: 100%;
-  height: 8px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 10px;
-  margin-top: 20px;
-  overflow: hidden;
-}
-
-#globalProgress {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--gold), #f59e0b);
-  transition: width 0.8s ease;
-}
-
-/* ===== BREADCRUMB (NAVIGÁCIÓ) ===== */
-.breadcrumb {
-  font-family: 'Cinzel', serif;
-  padding: 15px;
-  color: #94a3b8;
-  font-size: 14px;
-}
-
-.breadcrumb span { cursor: pointer; transition: 0.2s; }
-.breadcrumb span:hover { color: var(--gold); }
-.breadcrumb .sep { margin: 0 10px; opacity: 0.5; }
-.breadcrumb .active { color: var(--gold); cursor: default; }
-
-
-/*Folder*/
-/* ===== MAPPA RENDSZER ===== */
-.folder-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 30px;
-}
-
-.folder {
-  position: relative;
-  background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 40px 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-/* A mappa "füle" */
-.folder::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: -1px;
-  width: 90px;
-  height: 16px;
-  background: var(--folder-color);
-  filter: brightness(0.8); /* Sötétítés a mélységért */
-  border: 1px solid color-mix(in srgb, var(--folder-color) 50%, transparent);
-  border-bottom: none;
-  border-radius: 12px 15px 0 0;
-  z-index: -1; /* Hogy a tartalom mögött legyen */
-}
-
-.folder:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: var(--team-color);
-  box-shadow: 0 0 25px var(--team-color);
-  transform: translateY(-5px) scale(1.02);
-}
-
-
-.folder-icon {
-  font-size: 45px;
-  margin-bottom: 15px;
-}
-
-.folder-img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  /* Finom árnyék a logó mögé */
-  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
-  margin-bottom: 15px;
-  transition: transform 0.3s;
-}
-
-.folder:hover .folder-img {
-    transform: scale(1.1); /* Kicsit megnő hoverre */
-}
-
-.folder-name {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.9rem;
-  margin-top: 15px;
-  letter-spacing: 1px;
-}
-
-.folder-tab {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 4px;
-  background: var(--team-color);
-  box-shadow: 0 0 10px var(--team-color);
-}
-
-.folder-logo {
-  max-width: 100px;
-  max-height: 80px;
-  filter: drop-shadow(0 0 5px var(--team-color));
-}
-
-.folder:hover .folder-logo { transform: scale(1.1) rotate(5deg); }
-
-.folder-title {
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-}
-
-/* ===== KÁRTYA LISTA ===== */
-.card-grid { display: flex; flex-direction: column; gap: 12px; }
-
-.card-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 15px 30px;
-  border-right: 4px solid #334155; /* Alap szegély */
-  transition: 0.3s;
-}
-
-.card-item.owned {
-  border-right: 4px solid var(--team-color);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: inset -10px 0 20px rgba(var(--team-color-rgb), 0.1);
-}
-
-.card-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--team-color);
-}
-
-.card-num {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--team-color);
-  font-size: 1.1rem;
-  text-shadow: 0 0 5px var(--team-color);
-}
-
-.folder {
-  position: relative;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 0 15px 15px 15px;
-  padding: 30px 15px;
-  text-align: center;
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-.folder::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: -1px;
-  width: 80px;
-  height: 16px;
-  background: rgba(30, 41, 59, 1); /* Sötét kitöltés a fülnek */
-  border: 1px solid var(--border);
-  border-bottom: none;
-  border-radius: 10px 15px 0 0;
-}
-
-.card-checkbox {
-  width: 15px;
-  height: 15px;
-  accent-color: var(--gold);
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-.card-info {
-    display: flex;
-    align-items: center;
-}
-
-.card-label {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.card-name { font-weight: 600; font-size: 1.1rem; }
-
-/* Ha be van pipálva, a név kicsit halványabb lehet, mint egy elvégzett feladat */
-.card-item.owned .card-name {
-    opacity: 0.8;
-}
-
-/* Keresési találatnál megjelenő plusz infó */
-.card-subtext {
-    font-size: 12px;
-    color: #94a3b8;
-    text-transform: uppercase;
-    margin-top: 4px;
-    display: block;
-}
-
-/* Statisztikai kártyák "Glass" stílusa */
-.stats-container {
-  max-width: 900px;
-  margin: 0 auto 40px auto;
-  background: var(--glass);
-  border-radius: 20px;
-  padding: 30px;
-  border: 1px solid var(--border);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 20px;
-}
-
-.stat {
-  display: flex;
-  align-items: center; /* Egy vonalba teszi őket */
-  gap: 10px;           /* EZEZ ADJA A SZÜKSÉGES TÁVOLSÁGOT */
-  padding: 10px 20px;
-}
-
-.stat span:first-child {
-  color: #94a3b8;
-  font-size: 14px;
-}
-
-.stat span:last-child {
-  color: var(--gold);
-  font-weight: bold;
-  font-size: 18px;
-}
-
-/* HEADER */
+/* ===== 2. FEJLÉC (HEADER) ===== */
 header {
-  background: var(--glass);
-  backdrop-filter: blur(20px);
-  padding: 30px 20px;
-  text-align: center;
-  border-bottom: 2px solid var(--team-color);
-  box-shadow: 0 0 20px var(--team-color);
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  transition: all 0.5s ease;
+    background: #000;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-header h1 {
-  font-family: 'Orbitron', sans-serif;
-  margin: 0;
-  font-size: 2rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px var(--team-color);
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .header-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .main-banner {
+        margin: 20px auto;
+        width: 95%;
+    }
+
+    .banner-border {
+        padding: 20px 10px;
+    }
 }
 
-header p {
-  letter-spacing: 3px;
-  font-size: 14px;
-  opacity: 0.5;
-  margin-top: 10px;
-}
-/* ===== KERESŐMEZŐ STÍLUS (Admin gombok mintájára) ===== */
-
-.search-wrapper {
-  margin: 25px auto 0 auto;
-  width: 90%;
-  max-width: 500px;
-}
-#searchInput {
-  width: 100%;
-  max-width: 400px;
-  margin-top: 15px;
-  padding: 12px 20px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--team-color);
-  border-radius: 4px;
-  color: white;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.8rem;
-  box-shadow: inset 0 0 5px var(--team-color);
+.header-left {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    color: var(--gold-solid);
 }
 
+.header-left span { color: #888; }
 
-#searchInput:focus { border-color: var(--gold); box-shadow: 0 0 20px rgba(250, 204, 21, 0.2); }
+.header-right { display: flex; align-items: center; gap: 25px; }
 
-/* A "Keresés..." helyőrző szöveg színe */
-#searchInput::placeholder {
-  color: #94a3b8;
-  opacity: 0.7;
+.search-box {
+    background: #1a1a1a;
+    padding: 8px 15px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #333;
 }
 
+.search-box input {
+    background: transparent;
+    border: none;
+    color: white;
+    margin-left: 10px;
+    outline: none;
+    font-family: 'Poppins';
+}
 
-/* SVG Ikonok stílusa a mappákban */
-.folder-icon svg {
-    width: 50px;
-    height: 50px;
-    color: var(--gold); /* Alapból arany */
-    filter: drop-shadow(0 0 8px var(--gold-glow));
+.avatar {
+    width: 35px;
+    height: 35px;
+    background: var(--gold);
+    border-radius: 50%;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.user-profile { display: flex; align-items: center; cursor: pointer; }
+
+/* ===== 3. KIEMELT BANNER ===== */
+.main-banner {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1200px;
+    padding: 3px;
+    background: var(--gold);
+    border-radius: 20px;
+}
+
+.banner-border {
+    background: #0f172a;
+    border-radius: 18px;
+    padding: 40px;
+    text-align: center;
+    background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+}
+
+.gold-text {
+    font-family: 'Cinzel', serif;
+    background: var(--gold);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: clamp(24px, 5vw, 48px);
+    margin: 0;
+}
+
+.banner-content h1 { font-size: clamp(20px, 4vw, 36px); letter-spacing: 4px; margin: 10px 0; }
+.gold-subtitle { color: var(--gold-solid); letter-spacing: 3px; font-size: 0.9rem; text-transform: uppercase; }
+
+.banner-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    margin-top: 20px;
+    color: var(--gold-solid);
+    border: 2px solid var(--gold-solid);
+    display: inline-block;
+    padding: 5px 15px;
+}
+
+/* ===== 4. STATISZTIKÁK ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+}
+
+.metal-bg {
+    background: var(--metal);
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #444;
+    box-shadow: inset 0 0 15px rgba(255,255,255,0.05);
+}
+
+.stat-label { color: #94a3b8; font-size: 0.85rem; text-transform: uppercase; }
+.stat-value { font-size: 2rem; font-weight: 700; color: var(--gold-solid); display: block; }
+.stat-icon { font-size: 2rem; color: rgba(255,255,255,0.1); }
+
+/* PROGRESS BAR */
+.progress-bar-bg { width: 100%; height: 6px; background: #000; border-radius: 10px; margin-top: 10px; }
+.progress-bar-fill { height: 100%; width: 0%; background: var(--gold); border-radius: 10px; transition: 1s ease; }
+
+/* ===== 5. MAPPÁK ===== */
+.section-title { width: 90%; max-width: 1200px; margin: 0 auto 20px auto; font-family: 'Cinzel'; color: #888; letter-spacing: 2px; }
+.folder-grid { width: 90%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; }
+
+.folder {
+    background: var(--metal);
+    border-radius: 15px;
+    padding: 25px 15px;
+    text-align: center;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column; /* EGYSMÁS ALÁ kerülnek az elemek */
+    align-items: center;
+    justify-content: center;
+    min-height: 200px; /* Fix magasság, hogy ne ugráljanak a dobozok */
     transition: 0.3s ease;
 }
 
-.folder:hover .folder-icon svg {
-    transform: scale(1.1);
-    color: white; /* Hoverre kifehéredik, hogy "világítson" */
-    filter: drop-shadow(0 0 12px var(--team-color)); /* Felveszi a csapat ragyogását */
+.folder:hover {
+    border-color: var(--gold-solid);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(191, 149, 63, 0.1);
 }
 
-/* Ha a mappának van egyedi csapatszíne, az ikon is vegye át */
-.folder[style*="--team-color"] .folder-icon svg {
-    color: var(--team-color);
+.folder-logo {
+    width: 100px; /* Nagyobb logók */
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
 }
 
-
-/* ===== MOBIL OPTIMALIZÁLÁS (768px alatt) ===== */
-@media (max-width: 768px) {
-    
-    /* 1. Fejléc összenyomása */
-    header {
-        padding: 40px 15px 20px;
-    }
-
-    header h1 {
-        font-size: 28px; /* Kisebb betű, hogy ne törjön több sorba */
-        letter-spacing: 2px;
-    }
-
-    /* 2. Admin gomb fixálása */
-    .admin-panel {
-        top: 10px;
-        left: 10px;
-    }
-
-    .admin-btn {
-        padding: 8px 15px;
-        font-size: 12px;
-    }
-
-    /* 3. Statisztikák 2 oszlopba rendezése */
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 15px;
-    }
-
-    .stat span:last-child {
-        font-size: 24px;
-    }
-
-    /* 4. Mappák 2 oszlopba (hogy látszódjanak a logók) */
-    .folder-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding: 10px;
-    }
-
-    .folder {
-        padding: 25px 10px;
-        margin-top: 10px;
-    }
-
-    .folder-tab {
-        width: 70px;
-        height: 15px;
-        top: -14px;
-    }
-
-    .folder-logo {
-        width: 70px;
-        height: 70px;
-    }
-
-    .folder-name {
-        font-size: 14px;
-    }
-
-    /* 5. Kártya lista olvashatósága */
-    .card-item {
-        padding: 12px 15px;
-        font-size: 14px;
-    }
-
-    .card-checkbox {
-        width: 24px; /* Mobilon könnyebb legyen eltalálni */
-        height: 24px;
-        margin-right: 10px;
-    }
-
-    /* 6. Navigáció (Breadcrumb) görgethetővé tétele */
-    .breadcrumb {
-        width: 90%;
-        overflow-x: auto;
-        white-space: nowrap;
-        display: block; /* Hogy tudjon görögni oldalra */
-        border-radius: 15px;
-        padding: 10px 15px;
-    }
-
-    /* ===== PRÉMIUM STÍLUS A SZÁMOZOTT KÁRTYÁKNAK ===== */
-
-/* Alapstílus a számozott kártya dobozának */
-.card-item.numbered-card {
-  border: 1px solid #eab308;
-  box-shadow: 0 0 10px rgba(234, 179, 8, 0.3);
+.folder-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: #fff;
+    margin-bottom: 5px;
+    white-space: normal; /* Engedjük, hogy több sorba törjön, ha túl hosszú */
+    line-height: 1.2;
 }
 
-/* Egy halvány csillogás effekt a háttérben */
-.card-item.numbered-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Ha a számozott kártya meg is van (Owned), erősebb effekt */
-.card-item.numbered-card.owned {
-    box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2); /* Finom arany külső ragyogás */
-    border-left: 4px solid var(--gold); /* Marad az arany sáv */
-}
-
-/* Hover effekt turbózása a számozott lapoknál */
-.card-item.numbered-card:hover {
-    border-color: rgba(250, 204, 21, 0.8);
-    box-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
-    transform: translateX(5px) scale(1.01); /* Kicsit jobban kiemelkedik */
-}
-
-.card-meta {
-  font-family: 'Orbitron', sans-serif;
-  color: #eab308;
-  font-weight: bold;
-}
-
-/* A perjel és a szám kiemelése arannyal */
-.card-item.numbered-card .card-meta {
-    color: var(--gold);
-    font-weight: bold;
-    font-family: 'Cinzel', serif; /* Használjuk a fejléc elegáns betűtípusát */
+/* A kártyaszám kijelzése a mappa alján */
+.folder-count {
+    font-size: 0.75rem;
+    color: var(--gold-solid);
+    text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+/* ===== 6. PRÉMIUM KÁRTYA LISTA (EZ HIÁNYZOTT!) ===== */
+.card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-item {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 5px solid #334155;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    transition: all 0.3s ease;
+}
+
+.card-item.owned {
+    border-left-color: var(--gold-solid);
+    background: linear-gradient(135deg, rgba(191, 149, 63, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.card-info { display: flex; align-items: center; gap: 20px; }
+.card-num { font-family: 'Cinzel', serif; color: var(--gold-solid); font-weight: bold; }
+.card-name { font-weight: 600; color: #fff; }
+.card-subtext { font-size: 0.75rem; color: #888; text-transform: uppercase; }
+
+.card-meta {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-solid);
+    background: rgba(0,0,0,0.5);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(191, 149, 63, 0.3);
+}
+
+.breadcrumb {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 10px 0;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(191, 149, 63, 0.2);
+}
+
+.breadcrumb span {
+    cursor: pointer;
+    color: #666; /* Alapból szürke */
+    transition: all 0.3s ease;
+}
+
+.breadcrumb span:hover {
+    color: #fff; /* Hoverre fehér */
+}
+
+/* Az aktuális szint arany színnel ragyog */
+.breadcrumb span.active-crumb {
+    color: var(--gold-solid);
+    text-shadow: 0 0 10px rgba(191, 149, 63, 0.4);
+    cursor: default;
+}
+
+/* --- ADMIN DROPDOWN STÍLUS --- */
+.user-profile {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 15px);
+    background: #111;
+    min-width: 220px;
+    border: 1px solid var(--gold-solid);
+    border-radius: 8px;
+    z-index: 2000;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+
+.dropdown-content.show {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ccc;
+    font-size: 0.85rem;
+    transition: 0.2s;
+}
+
+.dropdown-item i {
+    width: 16px;
+    color: var(--gold-solid);
+}
+
+.dropdown-item:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(191, 149, 63, 0.2);
+    margin: 5px 0;
 }

@@ -3,41 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏀 Grayson Allen Collection</title>
+    <title>Grayson Allen Collection</title>
     <link rel="stylesheet" href="graysonallen.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
 <header>
-  <h1>GRAYSON ALLEN</h1>
-  <p>TRADING CARD ARCHIVE</p>
-  <div class="search-wrapper">
-    <input type="text" id="searchInput" placeholder="Keresés év, márka vagy kártya szerint...">
-  </div>
+    <div class="header-left">GRAYSON ALLEN | <span>COLLECTION</span></div>
+    <div class="header-right">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search">
+        </div>
+        <div class="user-profile" onclick="toggleAdminMenu(event)">
+    <div class="avatar">Sz</div>
+    <span>ADMIN <i class="fas fa-chevron-down"></i></span>
+    
+    <div id="adminDropdown" class="dropdown-content">
+        <label for="csvInput" class="dropdown-item">
+            <i class="fas fa-file-import"></i> CSV Importálása
+        </label>
+        <input type="file" id="csvInput" accept=".csv" style="display:none;">
+        
+        <div class="dropdown-item" onclick="location.reload()">
+            <i class="fas fa-sync-alt"></i> Adatok frissítése
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-item" style="opacity: 0.5; cursor: not-allowed;">
+            <i class="fas fa-lock"></i> Kijelentkezés
+        </div>
+    </div>
 </header>
 
 <main>
-    <div class="stats-container">
-        <div class="stats-grid">
-            <div class="stat"><span>Összesen</span><span id="totalCount">0</span></div>
-            <div class="stat"><span>Megvan</span><span id="ownedCount">0</span></div>
-            <div class="stat"><span>Hiányzik</span><span id="missingCount">0</span></div>
-            <div class="stat"><span>Haladás</span><span id="percentCount">0%</span></div>
-        </div>
-        <div class="progress">
-            <div id="globalProgress" class="progress-fill"></div>
+    <div class="main-banner">
+        <div class="banner-border">
+            <div class="banner-content">
+                <h2 class="gold-text">COLLECTION OVERVIEW</h2>
+                <h1>Grayson Allen Card Total Database</h1>
+                  <div class="banner-logo">from Szabolcs Szekeres</div>
+            </div>
         </div>
     </div>
 
-    <div id="breadcrumb" class="breadcrumb"></div>
-    
+    <nav id="breadcrumbContainer" class="breadcrumb"></nav>
+
+    <div class="stats-grid">
+        <div class="stat-card metal-bg">
+            <div class="stat-info">
+                <span class="stat-label">Total Cards</span>
+                <span class="stat-value" id="totalCount">0</span>
+            </div>
+            <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+        </div>
+        <div class="stat-card metal-bg">
+            <div class="stat-info">
+                <span class="stat-label">Owned</span>
+                <span class="stat-value" id="ownedCount">0</span>
+            </div>
+            <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+        </div>
+        <div class="stat-card metal-bg">
+            <div class="stat-info">
+                <span class="stat-label">Missing</span>
+                <span class="stat-value" id="missingCount">0</span>
+            </div>
+            <div class="stat-icon"><i class="fas fa-times"></i></div>
+        </div>
+        <div class="stat-card metal-bg">
+            <div class="stat-info">
+                <span class="stat-label">Refined Progress</span>
+                <span class="stat-value" id="percentCount">0%</span>
+                <div class="progress-bar-bg">
+                    <div id="globalProgress" class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="section-title">COLLECTION FOLDERS</h3>
     <div id="folderContainer" class="folder-grid"></div>
 </main>
-
-<div class="admin-panel">
-    <label for="csvInput" class="admin-btn">🏀 Import CSV</label>
-    <input type="file" id="csvInput" accept=".csv" hidden>
-</div>
 
 <script type="module" src="gacc.js"></script>
 </body>
