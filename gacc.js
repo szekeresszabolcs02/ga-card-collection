@@ -54,12 +54,19 @@ window.uploadImageForCard = async (cardId) => {
         const fileName = `${cardId}_${Date.now()}.${ext}`;
 
         try {
-            alert("Feltöltés indul...");
-            // CSERÉLD KI A SAJÁT WORKER URL-EDRE!
-            const workerUrl = `*-grayson-cards.szekeres-szabolcs02.workers.dev`;
-            const res = await fetch(workerUrl, { method: "POST", body: file });
-            const imageUrl = await res.text();
+        alert("Feltöltés indul...");
+        
+        // --- IDE MÁSOLD A SAJÁT WORKER URL-EDET ---
+        const workerUrl = `https://grayson-cards.szekeres-szabolcs02.workers.dev`;
+        
+        const response = await fetch(workerUrl, {
+            method: "POST", // <--- EZ A LEGFONTOSABB SOR! Ellenőrizd, hogy nagybetűvel van-e.
+            body: file
+        });
 
+        if (!response.ok) throw new Error("A Worker nem válaszolt.");
+
+        const imageUrl = await response.text();
             await updateDoc(doc(db, "cards", cardId), { imageUrl: imageUrl, updatedAt: serverTimestamp() });
             alert("Kész!");
             loadCollection();
