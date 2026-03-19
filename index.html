@@ -17,23 +17,17 @@
             <input type="text" id="searchInput" placeholder="Search">
         </div>
         <div class="user-profile" onclick="toggleAdminMenu(event)">
-    <div class="avatar">Sz</div>
-    <span>ADMIN <i class="fas fa-chevron-down"></i></span>
-    
-    <div id="adminDropdown" class="dropdown-content">
-        <label for="csvInput" class="dropdown-item">
-            <i class="fas fa-file-import"></i> CSV Importálása
-        </label>
-        <input type="file" id="csvInput" accept=".csv" style="display:none;">
-        
-        <div class="dropdown-item" onclick="location.reload()">
-            <i class="fas fa-sync-alt"></i> Adatok frissítése
-        </div>
-        
-        <div class="dropdown-divider"></div>
-        
-        <div class="dropdown-item" style="opacity: 0.5; cursor: not-allowed;">
-            <i class="fas fa-lock"></i> Kijelentkezés
+            <div class="avatar">SZ</div>
+            <span>ADMIN <i class="fas fa-chevron-down"></i></span>
+            <div id="adminDropdown" class="dropdown-content">
+                <label for="csvInput" class="dropdown-item">
+                    <i class="fas fa-file-import"></i> CSV Importálása
+                </label>
+                <input type="file" id="csvInput" accept=".csv" style="display:none;">
+                <div class="dropdown-item" onclick="location.reload()">
+                    <i class="fas fa-sync-alt"></i> Frissítés
+                </div>
+            </div>
         </div>
     </div>
 </header>
@@ -43,8 +37,8 @@
         <div class="banner-border">
             <div class="banner-content">
                 <h2 class="gold-text">COLLECTION OVERVIEW</h2>
-                <h1>Grayson Allen Card Total Database</h1>
-                  <div class="banner-logo">from Szabolcs Szekeres</div>
+                <h1>Total Grayson Allen Database</h1>
+                <p class="gold-subtitle">made by Szabi</p>
             </div>
         </div>
     </div>
@@ -74,7 +68,7 @@
             <div class="stat-icon"><i class="fas fa-times"></i></div>
         </div>
         <div class="stat-card metal-bg">
-            <div class="stat-info">
+            <div class="stat-info" style="width: 100%;">
                 <span class="stat-label">Refined Progress</span>
                 <span class="stat-value" id="percentCount">0%</span>
                 <div class="progress-bar-bg">
@@ -84,9 +78,14 @@
         </div>
     </div>
 
-    <h3 class="section-title">COLLECTION FOLDERS</h3>
+    <h3 id="sectionTitle" class="section-title">COLLECTION FOLDERS</h3>
     <div id="folderContainer" class="folder-grid"></div>
 </main>
+
+<div id="imgModal" class="modal" onclick="closeLightbox()">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
 
 <script type="module" src="gacc.js"></script>
 </body>
