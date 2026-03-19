@@ -57,7 +57,7 @@ window.uploadImageForCard = async (cardId) => {
         alert("Feltöltés indul...");
         
         // --- IDE MÁSOLD A SAJÁT WORKER URL-EDET ---
-        const workerUrl = `https://grayson-cards.szekeres-szabolcs02.workers.dev`;
+       const workerUrl = `https://grayson-cards.szekeres-szabolcs02.workers.dev/?file=${fileName}`;
         
         const response = await fetch(workerUrl, {
             method: "POST", // <--- EZ A LEGFONTOSABB SOR! Ellenőrizd, hogy nagybetűvel van-e.
