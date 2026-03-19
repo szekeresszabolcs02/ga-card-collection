@@ -163,17 +163,32 @@ function renderSingleCard(c, container) {
     const div = document.createElement("div");
     const isNum = (c.printRun && c.printRun !== 'x');
     div.className = `card-item ${c.owned ? 'owned' : ''} ${isNum ? 'numbered-card' : ''}`;
-    const img = c.imageUrl ? `<img src="${c.imageUrl}" class="card-img-preview" onclick="openLightbox(event, '${c.imageUrl}')">` : 
-                `<div class="no-img-placeholder" onclick="uploadImageForCard('${c.id}')"><i class="fas fa-plus"></i></div>`;
+    
+    // Képkezelés: ha van kép, egy kis 'edit' réteget teszünk rá
+    let imgHtml = "";
+    if (c.imageUrl && !c.imageUrl.includes("Not Allowed")) {
+        imgHtml = `
+            <div class="img-container" style="position: relative; width: 45px; height: 63px;">
+                <img src="${c.imageUrl}" class="card-img-preview" onclick="openLightbox(event, '${c.imageUrl}')">
+                <div class="edit-overlay" onclick="event.stopPropagation(); uploadImageForCard('${c.id}')" title="Kép cseréje">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+            </div>`;
+    } else {
+        // Ha nincs kép, vagy a hibaüzenet mentődött el, marad a "+" gomb
+        imgHtml = `<div class="no-img-placeholder" onclick="uploadImageForCard('${c.id}')"><i class="fas fa-plus"></i></div>`;
+    }
+
     div.innerHTML = `
         <div class="card-info" style="display:flex; align-items:center; gap:15px;">
-            ${img}
+            ${imgHtml}
             <div>
                 <input type="checkbox" id="check-${c.id}" ${c.owned ? 'checked' : ''}>
                 <label for="check-${c.id}">#${c.cardNumber} ${c.baseName}</label>
             </div>
         </div>
         <div class="card-meta">${isNum ? '/' + c.printRun : ''}</div>`;
+    
     div.querySelector('input').addEventListener('change', (e) => toggleOwnedStatus(c.id, e.target.checked, div));
     container.appendChild(div);
 }
