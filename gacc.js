@@ -285,6 +285,57 @@ function updateDashboard() {
     if(document.getElementById("globalProgress")) document.getElementById("globalProgress").style.width = pct + "%";
 }
 
+// 1. Eseményfigyelő: Amikor gépelsz a keresőbe
+document.getElementById('searchInput')?.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase().trim();
+    
+    if (term === "") {
+        renderView(); 
+        return;
+    }
+
+    const filtered = allCards.filter(c => {
+        // Alapadatok előkészítése a kereséshez
+        const name = c.baseName?.toLowerCase() || "";
+        const num = c.cardNumber?.toString() || "";
+        const series = c.series?.toLowerCase() || "";
+        const brand = c.brand?.toLowerCase() || "";
+        
+        // Számozás kezelése: elkészítjük a "50" és a "/50" verziót is
+        const limit = (c.printRun && c.printRun !== 'x') ? c.printRun.toString() : "";
+        const limitWithSlash = limit ? "/" + limit : "";
+
+        return (
+            name.includes(term) || 
+            num.includes(term) || 
+            series.includes(term) || 
+            brand.includes(term) ||
+            limit.includes(term) ||         // Találat, ha csak "50"-et írsz
+            limitWithSlash.includes(term)   // Találat, ha "/50"-et írsz
+        );
+    });
+
+    renderSearchResults(filtered);
+});
+
+// Speciális renderelés a keresési találatoknak
+function renderSearchResults(results) {
+    const container = document.getElementById("folderContainer");
+    if (!container) return;
+    
+    container.innerHTML = ""; // Kiürítjük a mappákat
+    
+    if (results.length === 0) {
+        container.innerHTML = `<div style="text-align:center; padding:50px; color:gray;">Nincs találat erre a keresésre.</div>`;
+        return;
+    }
+
+    // A találatokat ugyanúgy jelenítjük meg, mint a kártyalistát
+    results.forEach(c => {
+        renderSingleCard(c, container);
+    });
+}
+
 window.resetNav = () => { currentPath = { team: null, year: null, brand: null, series: null }; currentLevel = 'teams'; renderView(); };
 window.openLightbox = (e, url) => { e.stopPropagation(); document.getElementById("modalImg").src = url; document.getElementById("imgModal").style.display = "flex"; };
 window.closeLightbox = () => document.getElementById("imgModal").style.display = "none";
