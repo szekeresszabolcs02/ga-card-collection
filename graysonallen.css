@@ -2,42 +2,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
 
 :root {
-    --gold: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-    --gold-solid: #bf953f;
-    --metal: linear-gradient(135deg, #444 0%, #222 50%, #111 100%);
+    --gold-gradient: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    --gold: #ffd700;
+    --gold-solid: #d4af37; /* 🔥 EZ HIÁNYZOTT */
+    --metal: linear-gradient(145deg, #1f1f1f, #2a2a2a); /* 🔥 EZ IS */
     --bg-dark: #0a0a0a;
-    --border: rgba(255, 255, 255, 0.1);
-    --glass: rgba(0, 0, 0, 0.6);
+    --card-bg: #161616;
+    --border-color: rgba(255, 215, 0, 0.2);
+    --text-main: #f8fafc;
+    --text-dim: rgba(248, 250, 252, 0.6);
 }
 
 body {
     background-color: var(--bg-dark);
     background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
-    color: #f8fafc;
+    color: var(--text-main);
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    min-height: 100vh;
+    padding-bottom: 50px;
 }
-
 /* ===== 2. FEJLÉC (HEADER) ===== */
 header {
     background: #000;
-    padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 2px solid var(--gold);
+    text-align: center;
+    display: flex;              /* 🔥 EZ HIÁNYZOTT */
+    flex-direction: column;     /* vagy row alapból */
     align-items: center;
-    border-bottom: 1px solid #222;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+.stat-item span {
+    color: var(--gold);
+    font-weight: bold;
 }
 
 .gold-text {
-    background: var(--gold);
+    font-family: 'Cinzel', serif;
+    background: var(--gold-gradient); /* jobb kinézet */
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-family: 'Cinzel', serif;
 }
 
 @media (max-width: 480px) {
@@ -104,8 +116,6 @@ header {
     margin-right: 10px;
 }
 
-.user-profile { display: flex; align-items: center; cursor: pointer; }
-
 /* ===== 3. KIEMELT BANNER ===== */
 .main-banner {
     margin: 40px auto;
@@ -124,15 +134,7 @@ header {
     background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
 }
 
-.gold-text {
-    font-family: 'Cinzel', serif;
-    background: var(--gold);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: clamp(24px, 5vw, 48px);
-    margin: 0;
-}
+
 
 .banner-content h1 { font-size: clamp(20px, 4vw, 36px); letter-spacing: 4px; margin: 10px 0; }
 .gold-subtitle { color: var(--gold-solid); letter-spacing: 3px; font-size: 0.9rem; text-transform: uppercase; }
@@ -178,32 +180,43 @@ header {
 
 /* ===== 5. MAPPÁK ===== */
 .section-title { width: 90%; max-width: 1200px; margin: 0 auto 20px auto; font-family: 'Cinzel'; color: #888; letter-spacing: 2px; }
+
+
 .folder-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 25px;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 25px;
 }
+
+
 
 .folder {
-    background: var(--metal);
-    border-radius: 15px;
-    padding: 30px 20px;
-    text-align: center;
-    border: 1px solid #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-.folder:hover { border-color: var(--gold-solid); transform: translateY(-5px); }
+    background: linear-gradient(135deg, #222 0%, #111 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
 
+    display: flex;              /* 🔥 EZ KELL */
+    flex-direction: column;     /* 🔥 */
+    justify-content: space-between; /* 🔥 ez tolja szét */
+
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.folder:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
 .folder-logo {
-    max-width: 100%;
-    max-height: 80px;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 15px;
 }
 
 .folder-name {
@@ -221,86 +234,133 @@ header {
     color: var(--gold-solid);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 5px;
+    margin-top: auto; /* 🔥 EZ A KULCS */
     font-weight: 600;
 }
 
-/* ===== 6. PRÉMIUM KÁRTYA LISTA (EZ HIÁNYZOTT!) ===== */
+
 .card-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 🔥 nagyobb */
+    gap: 25px;
     padding: 20px;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
+/* Egy kártya doboza */
 .card-item {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 5px solid #334155;
-    border-radius: 8px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 15px 30px;
-    transition: all 0.3s ease;
+    height: 100%;              /* 🔥 egységes */
+    min-height: 130px;         /* 🔥 fix alap */
+    gap: 8px;
+    background: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+    border-color: rgba(255, 215, 0, 0.5);
 }
 
 
 .card-item.numbered-card { border-right: 4px solid var(--gold-solid); }
 
 .card-item.owned {
-    border-left-color: var(--gold-solid);
-    background: linear-gradient(135deg, rgba(191, 149, 63, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border-color: rgba(255, 215, 0, 0.4);
 }
 
-.card-info { display: flex; align-items: center; gap: 20px; }
-.card-num { font-family: 'Cinzel', serif; color: var(--gold-solid); font-weight: bold; }
-.card-name { font-weight: 600; color: #fff; }
-.card-subtext { font-size: 0.75rem; color: #888; text-transform: uppercase; }
 
-.card-meta {
-    font-family: 'Cinzel', serif;
-    color: var(--gold-solid);
-    background: rgba(0,0,0,0.5);
-    padding: 4px 10px;
-    border-radius: 4px;
-    border: 1px solid rgba(191, 149, 63, 0.3);
+.card-info-section {
+    align-items: center;
+    text-align: center;
+}
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.card-num {color: var(--gold);
+    font-weight: bold;
+    font-size: 12px; 
+}
+
+.card-name {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: normal;
+    word-break: break-word;
+    min-height: 32px;
+}
+
+
+.card-subtext {
+    font-size: 12px;
+    color: var(--text-dim);
+}
+
+
+
+.card-meta-line {
+    margin-top: 6px;   /* 🔥 kis távolság */
+    text-align: center;
+    font-size: 15px;
+    color: var(--gold);
+    font-weight: bold;
 }
 
 .card-img-preview {
-    width: 45px; height: 63px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: 3px;
+}
+
+.card-images-section {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+}
+
+.card-img-container {
+    width: 85px;
+    height: 110px;
+    background: #222;
+    border: 1px solid #444;
     border-radius: 4px;
-    border: 1px solid var(--gold-solid);
-    cursor: zoom-in;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .breadcrumb {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 10px 0;
-    font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    border-bottom: 1px solid rgba(191, 149, 63, 0.2);
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 13px;
+    letter-spacing: 1px;
 }
 
 .breadcrumb span {
     cursor: pointer;
-    color: #999;
     transition: 0.3s;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
 }
 
 .breadcrumb span:hover {
-    color: var(--gold-solid);
+    color: var(--gold);
+}
+
+.active-crumb {
+    color: var(--gold);
+    font-weight: bold;
 }
 
 /* Az aktuális szint arany színnel ragyog */
@@ -312,8 +372,10 @@ header {
 
 /* --- ADMIN DROPDOWN STÍLUS --- */
 .user-profile {
-    position: relative;
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    position: relative;
     user-select: none;
 }
 
@@ -373,7 +435,12 @@ header {
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
 }
-.modal-content { max-width: 90%; max-height: 85vh; border: 2px solid var(--gold-solid); }
+.modal-content {
+    max-width: 90%;
+    max-height: 85vh;
+    border: 2px solid var(--gold-solid);
+    border-radius: 10px;
+}
 
 .brand-logo-style {
     width: 120px; /* A márkák logói általában szélesebbek */
@@ -403,4 +470,111 @@ header {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+}
+.card-images {
+    display: flex;
+    gap: 10px;
+}
+
+.card-img-container.no-img {
+    color: #ffd700; /* Arany plusz ikon */
+    font-size: 20px;
+}
+
+.card-sub-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.side-label {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    background: var(--gold);
+    color: #000;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 3px;
+    z-index: 5;
+}
+/* Tagek (Flux, Sorozat, Számozott) */
+.info-tag {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.series-tag {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-dim);
+}
+
+.limit-tag {
+    background: rgba(255, 215, 0, 0.15);
+    color: var(--gold);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.change-img-btn {
+   /* Ugyanaz mint eddig, csak kisebb ikonnal */
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background: #000;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card-img-container:hover .edit-overlay {
+    opacity: 1;
+}
+
+.card-row {
+    align-self: center;
+}
+
+.card-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+   align-self: center;
+}
+
+/* Nagyító (Lightbox) Modal */
+#imgModal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+#modalImg {
+    max-width: 90%;
+    max-height: 90%;
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    border-radius: 10px;
+}
+.no-img i {
+    color: var(--gold);
+    font-size: 16px;
 }

@@ -43,34 +43,46 @@ async function loadCollection() {
 }
 
 // --- R2 FELTÖLTÉS ---
-window.uploadImageForCard = async (cardId) => {
+window.uploadImageForCard = async (cardId, side) => {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
+    
     input.onchange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
+
         const ext = file.name.split('.').pop();
-        const fileName = `${cardId}_${Date.now()}.${ext}`;
+        // A fájlnévbe belevesszük, hogy front vagy back
+        const fileName = `${cardId}_${side}_${Date.now()}.${ext}`;
 
         try {
-        alert("Feltöltés indul...");
-        
-        // --- IDE MÁSOLD A SAJÁT WORKER URL-EDET ---
-       const workerUrl = `https://grayson-cards.szekeres-szabolcs02.workers.dev/?file=${fileName}`;
-        
-        const response = await fetch(workerUrl, {
-            method: "POST", // <--- EZ A LEGFONTOSABB SOR! Ellenőrizd, hogy nagybetűvel van-e.
-            body: file
-        });
+            alert(`${side === 'frontImageUrl' ? 'Előlap' : 'Hátlap'} feltöltése...`);
+            
+            const workerUrl = `https://grayson-cards.szekeres-szabolcs02.workers.dev/?file=${fileName}`;
+            
+            const response = await fetch(workerUrl, {
+                method: "POST",
+                body: file
+            });
 
-        if (!response.ok) throw new Error("A Worker nem válaszolt.");
+            if (!response.ok) throw new Error("Feltöltési hiba");
 
-        const imageUrl = await response.text();
-            await updateDoc(doc(db, "cards", cardId), { imageUrl: imageUrl, updatedAt: serverTimestamp() });
-            alert("Kész!");
-            loadCollection();
-        } catch (err) { alert("Hiba!"); }
+            const imageUrl = await response.text(); 
+
+            // Firestore frissítése a megfelelő mezővel (frontImageUrl vagy backImageUrl)
+            const updateData = {};
+            updateData[side] = imageUrl;
+            updateData.updatedAt = serverTimestamp();
+
+            await updateDoc(doc(db, "cards", cardId), updateData);
+
+            alert("Sikeres feltöltés!");
+            loadCollection(); 
+        } catch (error) {
+            console.error(error);
+            alert("Hiba történt a feltöltésnél.");
+        }
     };
     input.click();
 };
@@ -164,34 +176,53 @@ function renderSingleCard(c, container) {
     const isNum = (c.printRun && c.printRun !== 'x');
     div.className = `card-item ${c.owned ? 'owned' : ''} ${isNum ? 'numbered-card' : ''}`;
     
-    // Képkezelés: ha van kép, egy kis 'edit' réteget teszünk rá
-    let imgHtml = "";
-    if (c.imageUrl && !c.imageUrl.includes("Not Allowed")) {
-        imgHtml = `
-            <div class="img-container" style="position: relative; width: 45px; height: 63px;">
-                <img src="${c.imageUrl}" class="card-img-preview" onclick="openLightbox(event, '${c.imageUrl}')">
-                <div class="edit-overlay" onclick="event.stopPropagation(); uploadImageForCard('${c.id}')" title="Kép cseréje">
-                    <i class="fas fa-sync-alt"></i>
-                </div>
+    // Képkeret generáló (ugyanaz a logika, de tisztább HTML)
+    const getImageSlot = (url, side, label) => {
+        const hasImg = url && !url.includes("Not Allowed");
+        return `
+            <div class="card-img-container ${!hasImg ? 'no-img' : ''}" onclick="${!hasImg ? `uploadImageForCard('${c.id}', '${side}')` : ''}">
+                ${hasImg ? `<img src="${url}" class="card-img-preview" onclick="openLightbox(event, '${url}')">` : '<i class="fas fa-plus"></i>'}
+                ${hasImg ? `<div class="change-img-btn" onclick="event.stopPropagation(); uploadImageForCard('${c.id}', '${side}')"><i class="fas fa-sync-alt"></i></div>` : ''}
+                <span class="side-label">${label}</span>
             </div>`;
-    } else {
-        // Ha nincs kép, vagy a hibaüzenet mentődött el, marad a "+" gomb
-        imgHtml = `<div class="no-img-placeholder" onclick="uploadImageForCard('${c.id}')"><i class="fas fa-plus"></i></div>`;
-    }
+    };
 
     div.innerHTML = `
-        <div class="card-info" style="display:flex; align-items:center; gap:15px;">
-            ${imgHtml}
-            <div>
-                <input type="checkbox" id="check-${c.id}" ${c.owned ? 'checked' : ''}>
-                <label for="check-${c.id}">#${c.cardNumber} ${c.baseName}</label>
-            </div>
-        </div>
-        <div class="card-meta">${isNum ? '/' + c.printRun : ''}</div>`;
-    
+    <!-- KÉPEK -->
+    <div class="card-images-section">
+        ${getImageSlot(c.frontImageUrl, 'frontImageUrl', 'F')}
+        ${getImageSlot(c.backImageUrl, 'backImageUrl', 'B')}
+    </div>
+
+    <!-- CHECKBOX -->
+    <input type="checkbox" id="check-${c.id}" ${c.owned ? 'checked' : ''} class="card-checkbox">
+
+    <!-- NÉV + SZÁM -->
+    <div class="card-info-section">
+        <div class="card-num">#${c.cardNumber}</div>
+        <div class="card-name">${c.baseName}</div>
+    </div>
+
+    <!-- PRINT RUN -->
+    ${isNum ? `<div class="card-meta-line">/${c.printRun}</div>` : ''}
+`;
+
     div.querySelector('input').addEventListener('change', (e) => toggleOwnedStatus(c.id, e.target.checked, div));
     container.appendChild(div);
 }
+
+// Új függvény a kép nagyításához
+window.openLightbox = (e, url) => {
+    e.stopPropagation();
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImg");
+    modalImg.src = url;
+    modal.style.display = "flex";
+};
+
+window.closeLightbox = () => {
+    document.getElementById("imgModal").style.display = "none";
+};
 
 // --- NAVIGÁCIÓ JAVÍTÁSA (Most már appendChild-ot használunk, hogy ne vesszenek el az események) ---
 window.breadcrumbGoTo = (level) => {
