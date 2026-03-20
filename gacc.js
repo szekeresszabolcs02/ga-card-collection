@@ -15,11 +15,11 @@ const db = getFirestore(app);
 
 // --- KONFIGURÁCIÓK ---
 const teamConfig = {
+    "Utah Jazz": { logo: "jazz.png" },
     "Memphis Grizzlies": { logo: "grizzlies.png" },
     "Milwaukee Bucks": { logo: "bucks.png" },
     "Phoenix Suns": { logo: "suns.png" },
-    "Utah Jazz": { logo: "jazz.png" },
-    "default": { logo: "nba.png" }
+        "default": { logo: "nba.png" }
 };
 
 const brandConfig = {
@@ -95,9 +95,10 @@ function renderView() {
     container.innerHTML = "";
     updateBreadcrumb();
 
+    // Szűrés az aktuális path alapján a nem "teams" szintekhez
     const filtered = allCards.filter(c => {
         if (currentLevel === 'teams') return true;
-        const mTeam = c.team === currentPath.team;
+        const mTeam = (c.team || "").trim() === currentPath.team;
         const mYear = String(c.year) === String(currentPath.year);
         const mBrand = c.brand === currentPath.brand;
         const mSeries = c.series === currentPath.series;
@@ -110,9 +111,25 @@ function renderView() {
     });
 
     if (currentLevel === 'teams') {
-        [...new Set(allCards.map(c => c.team))].sort().forEach(t => {
-            const count = allCards.filter(c => c.team === t).length;
-            createFolder(t, true, null, count, null, () => { currentPath.team = t; currentLevel = 'years'; renderView(); });
+        const teamPriority = ['Utah Jazz', 'Memphis Grizzlies', 'Milwaukee Bucks', 'Phoenix Suns'];
+        let uniqueTeams = [...new Set(allCards.map(c => c.team?.trim()).filter(t => t))];
+
+        uniqueTeams.sort((a, b) => {
+            let indexA = teamPriority.indexOf(a);
+            let indexB = teamPriority.indexOf(b);
+            if (indexA === -1) indexA = 99;
+            if (indexB === -1) indexB = 99;
+            if (indexA === 99 && indexB === 99) return a.localeCompare(b);
+            return indexA - indexB;
+        });
+
+        uniqueTeams.forEach(t => {
+            const count = allCards.filter(c => c.team?.trim() === t).length;
+            createFolder(t, true, null, count, null, () => { 
+                currentPath.team = t; 
+                currentLevel = 'years'; 
+                renderView(); 
+            });
         });
     } else if (currentLevel === 'years') {
         [...new Set(filtered.map(c => c.year))].sort().reverse().forEach(y => {
@@ -132,35 +149,22 @@ function renderView() {
             createFolder(s, false, "🏷️", count, null, () => { currentPath.series = s; currentLevel = 'cards'; renderView(); });
         });
     } else {
-        // --- ITT A SORREND JAVÍTÁSA ---
         filtered.sort((a, b) => {
             const isBaseA = !a.printRun || a.printRun === 'x';
             const isBaseB = !b.printRun || b.printRun === 'x';
-
-            // 1. Ha mindkettő Base -> Kártyaszám szerint növekvő
-            if (isBaseA && isBaseB) {
-                return String(a.cardNumber).localeCompare(String(b.cardNumber), undefined, { numeric: true });
-            }
-
-            // 2. Ha az egyik Base, a másik számozott -> A Base kerül előre
+            if (isBaseA && isBaseB) return String(a.cardNumber).localeCompare(String(b.cardNumber), undefined, { numeric: true });
             if (isBaseA) return -1;
             if (isBaseB) return 1;
-
-            // 3. Ha mindkettő számozott -> Számozás szerint csökkenő (pl. 299 -> 99 -> 10)
             const valA = parseInt(a.printRun) || 0;
             const valB = parseInt(b.printRun) || 0;
-
-            if (valB !== valA) {
-                return valB - valA; 
-            }
-
-            // 4. Ha a számozásuk tök ugyanaz -> Kártyaszám dönt
+            if (valB !== valA) return valB - valA; 
             return String(a.cardNumber).localeCompare(String(b.cardNumber), undefined, { numeric: true });
         });
-
         filtered.forEach(c => renderSingleCard(c, container));
     }
 }
+
+
 function createFolder(name, isTeam, emoji, count, logoUrl, onClick) {
     const div = document.createElement("div");
     div.className = "folder metal-bg";

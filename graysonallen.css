@@ -184,23 +184,20 @@ header {
 
 .folder-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* 🔥 nagyobb */
+    gap: 25px;
     padding: 25px;
 }
-
-
 
 .folder {
     background: linear-gradient(135deg, #222 0%, #111 100%);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 20px;
-
+    min-height: 180px;
+    border-radius: 16px;
+    padding: 15px;
     display: flex;              /* 🔥 EZ KELL */
     flex-direction: column;     /* 🔥 */
     justify-content: space-between; /* 🔥 ez tolja szét */
-
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -213,15 +210,15 @@ header {
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 .folder-logo {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .folder-name {
     font-family: 'Cinzel', serif;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     color: #fff;
     margin-bottom: 5px;
     white-space: normal; /* Engedjük, hogy több sorba törjön, ha túl hosszú */
@@ -230,7 +227,7 @@ header {
 
 /* A kártyaszám kijelzése a mappa alján */
 .folder-count {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     color: var(--gold-solid);
     text-transform: uppercase;
     letter-spacing: 1px;
